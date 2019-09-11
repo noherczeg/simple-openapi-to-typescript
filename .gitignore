@@ -1,0 +1,8 @@
+node_modules
+test-results
+coverage
+**/*.log
+.idea
+**/*.iml
+**/dist
+**/lib

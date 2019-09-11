@@ -1,0 +1,64 @@
+{
+  "name": "simple-openapi-to-typescript",
+  "version": "0.1.0",
+  "description": "Yet another TypeScript generator for OpenAPI specifications.",
+  "main": "src/index.js",
+  "bin": {
+    "sott": "bin/cli.js"
+  },
+  "private": false,
+  "scripts": {
+    "lint": "eslint ./src",
+    "test": "jest"
+  },
+  "keywords": [
+    "typescript",
+    "openapi",
+    "generator"
+  ],
+  "author": "Norbert Csaba Herczeg <noherczeg@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noherczeg/openapi-ts-gen.git"
+  },
+  "license": "MIT",
+  "jest": {
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ]
+  },
+  "jest-junit": {
+    "outputDirectory": "test-results/jest",
+    "outputName": "results.xml"
+  },
+  "dependencies": {
+    "@typescript-eslint/typescript-estree": "2.0.0",
+    "commander": "2.20.0",
+    "fs-extra": "7.0.1",
+    "prettier": "1.18.2",
+    "yamljs": "0.3.0"
+  },
+  "devDependencies": {
+    "eslint": "6.1.0",
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-jest": "22.17.0",
+    "jest": "24.9.0",
+    "jest-junit": "8.0.0"
+  },
+  "files": [
+    "bin",
+    "src/generators",
+    "src/utils",
+    "src/index.js",
+    "src/process-model.js"
+  ],
+  "engines": {
+    "node": ">= 8.0.0"
+  }
+}
