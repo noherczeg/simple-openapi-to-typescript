@@ -4,3 +4,6 @@ plugins:
 
 exclude_patterns:
   - "examples"
+  - "src/__fixtures__"
+  - "src/__snapshots__"
+  - "src/**/*.spec.js"
