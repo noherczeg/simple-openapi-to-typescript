@@ -55,7 +55,7 @@ __Deeply nested object types will not be mapped recursively__, the second level 
 type of `object` will be mapped as `any`.
 
 __Composition is not supported.__ Instead currently the generator will produce interfaces which will
-extend a base, and every other possible type definition will be ignored (only using first `allOf).
+extend a base, and every other possible type definition will be ignored (only using first `allOf`).
 This is an implementation limitation. Maybe in the future composition will be supported.
 
 ## Notes:
