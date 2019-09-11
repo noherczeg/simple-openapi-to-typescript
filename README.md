@@ -1,5 +1,8 @@
 # Simple OpenAPI to TypeScript
 
+![npm](https://img.shields.io/npm/v/simple-openapi-to-typescript)
+![GitHub](https://img.shields.io/github/license/noherczeg/simple-openapi-to-typescript)
+
 Yet another TypeScript generator for OpenAPI specifications.
 
 ## About
