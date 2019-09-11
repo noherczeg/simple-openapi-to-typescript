@@ -1,6 +1,6 @@
 {
   "name": "simple-openapi-to-typescript",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Yet another TypeScript generator for OpenAPI specifications.",
   "main": "src/index.js",
   "bin": {
