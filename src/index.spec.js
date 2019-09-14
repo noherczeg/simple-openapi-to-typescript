@@ -73,6 +73,11 @@ describe('openapi-web-gen', () => {
         expect(pathOutputFor(odataOpenApiPath, 'SalesTotalsByAmountsGet.ts'))
           .toMatchSnapshot();
       });
+
+      it('CategoriesCategoryIDProductsGet.ts', () => {
+        expect(pathOutputFor(odataOpenApiPath, 'CategoriesCategoryIDProductsGet.ts'))
+          .toMatchSnapshot();
+      });
     });
   });
 

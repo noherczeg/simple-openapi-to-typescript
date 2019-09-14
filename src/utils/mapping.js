@@ -13,7 +13,7 @@ function convertEnumName(e) {
   if (e === '*') {
     return '_ALL_';
   }
-  return e.split(' ').map((p) => ucFirst(p)).join('');
+  return e.replace(/_/g, ' ').split(' ').map((p) => ucFirst(p)).join('');
 }
 
 const docsMapper = (host, ...itemNames) => {

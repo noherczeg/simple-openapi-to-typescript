@@ -63,7 +63,7 @@ export enum ExpandEnum {
   _ALL_ = "*",
   Customer = "Customer",
   Employee = "Employee",
-  Order_Details = "Order_Details",
+  OrderDetails = "Order_Details",
   Shipper = "Shipper"
 }
 

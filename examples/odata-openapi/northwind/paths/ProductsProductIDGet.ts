@@ -24,7 +24,7 @@ export enum SelectEnum {
 export enum ExpandEnum {
   _ALL_ = "*",
   Category = "Category",
-  Order_Details = "Order_Details",
+  OrderDetails = "Order_Details",
   Supplier = "Supplier"
 }
 
