@@ -42,12 +42,12 @@ export function createHostName(mapper: HostNameMapper): string {
 }
 `;
 
-function writeCommon(model, target, prettierOpts) {
+async function writeCommon(model, target, prettierOpts) {
   if (model.servers) {
     const utilsData = commonTemplate(model);
     const filePath = `${target}/common/Common.ts`;
     const formatted = prettier.format(utilsData, prettierOpts);
-    fse.outputFileSync(filePath, formatted);
+    await fse.outputFile(filePath, formatted);
   }
 }
 

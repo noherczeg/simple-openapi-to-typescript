@@ -9,15 +9,15 @@ const { writePath } = require('./generators/operation/write-operation');
 
 const validPathMethodTypes = Object.keys(httpMethodValues).map((k) => k.toLowerCase());
 
-function processModel(model, target, prettierOpts) {
+async function processModel(model, target, prettierOpts) {
   // enums
-  writeEnum('StatusCodes', statusCodesValues, target, prettierOpts);
-  writeEnum('HttpMethods', httpMethodValues, target, prettierOpts);
-  writeEnum('HttpHeaders', httpHeaderValues, target, prettierOpts);
-  writeEnum('MediaTypes', mediaTypeValues, target, prettierOpts);
+  await writeEnum('StatusCodes', statusCodesValues, target, prettierOpts);
+  await writeEnum('HttpMethods', httpMethodValues, target, prettierOpts);
+  await writeEnum('HttpHeaders', httpHeaderValues, target, prettierOpts);
+  await writeEnum('MediaTypes', mediaTypeValues, target, prettierOpts);
 
   // common
-  writeCommon(model, target, prettierOpts);
+  await writeCommon(model, target, prettierOpts);
 
   // responses
   Object.entries((model.components && model.components.responses) || {})

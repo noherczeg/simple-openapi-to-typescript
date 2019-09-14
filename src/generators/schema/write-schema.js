@@ -27,7 +27,7 @@ ${schema.$$docs && schema.$$docs.length ? `
 }
 `;
 
-function writeSchema(key, schema, model, target, prettierOpts) {
+async function writeSchema(key, schema, model, target, prettierOpts) {
   const imports = [];
   const $$name = pureName(key);
   const $$consolidatedImports = [];
@@ -46,7 +46,7 @@ function writeSchema(key, schema, model, target, prettierOpts) {
       imports.push({ ref: baseName, fileName: baseName });
     } else if (schema.type === 'object') {
       Object.entries(schema.properties || {}).forEach(([name, prop]) => {
-        const entry = propMapper(name, prop, schema);
+        const entry = propMapper(name, prop, schema, $$name);
 
         imports.push(...entry.imports);
         $$properties.push(entry.data);
@@ -68,7 +68,7 @@ function writeSchema(key, schema, model, target, prettierOpts) {
     schema.allOf.filter((a) => !a.$ref).forEach((allOf) => {
       if (allOf.type === 'object') {
         Object.entries(allOf.properties || {}).forEach(([name, prop]) => {
-          const entry = propMapper(name, prop, allOf);
+          const entry = propMapper(name, prop, allOf, $$name);
 
           // hoist internal properties with their corresponding imports.
           imports.push(...entry.imports);
@@ -90,7 +90,7 @@ function writeSchema(key, schema, model, target, prettierOpts) {
   });
   const filePath = `${target}/components/schemas/${$$name}.ts`;
   const formatted = prettier.format(data, prettierOpts);
-  fse.outputFileSync(filePath, formatted);
+  await fse.outputFile(filePath, formatted);
 }
 
 module.exports = {

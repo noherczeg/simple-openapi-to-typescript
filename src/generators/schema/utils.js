@@ -18,7 +18,7 @@ const propTypesMapper = (...items) => {
   return { types, imports };
 };
 
-const propMapper = (name, prop, schema) => {
+const propMapper = (name, prop, schema, $$name) => {
   const types = [];
   const imports = [];
   const required = prop.required || (schema.required || []).includes(name);
@@ -31,7 +31,7 @@ const propMapper = (name, prop, schema) => {
       arrayTypeName = pureName(arrayType.split('/').pop());
       imports.push({ ref: arrayTypeName, fileName: arrayTypeName });
     } else {
-      console.warn(`Cannot map property "${name}" of schema "${schema.$$name}", because it's an inline object. Falling back to "any".`);
+      console.warn(`Cannot map property "${name}" of schema "${$$name}", because it's an inline object. Falling back to "any".`);
       arrayTypeName = 'any';
     }
   }

@@ -27,6 +27,9 @@
       "default",
       "jest-junit"
     ],
+    "coverageReporters": [
+      "lcov"
+    ],
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"

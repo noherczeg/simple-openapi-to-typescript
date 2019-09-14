@@ -11,7 +11,7 @@ const defaultPrettierOpts = {
   parser: 'typescript',
 };
 
-module.exports = (modelPath, cmd) => {
+module.exports = async (modelPath, cmd) => {
   const prettierOpts = cmd.prettierOpts
     ? { ...defaultPrettierOpts, ...JSON.parse(fs.readFileSync(path.resolve(cmd.prettierOpts))) }
     : defaultPrettierOpts;
@@ -34,6 +34,6 @@ module.exports = (modelPath, cmd) => {
   } else {
     const modelFullPath = path.resolve(modelPath);
     data = fs.readFileSync(modelFullPath, { encoding: 'utf8' }).toString();
-    processModel(parser.parse(data), target, prettierOpts);
+    await processModel(parser.parse(data), target, prettierOpts);
   }
 };

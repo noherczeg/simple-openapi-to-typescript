@@ -13,7 +13,7 @@ export interface ${response.name} {${response.schema.$$properties.map((prop) => 
 }
 `;
 
-function writeResponse(responseKey, response, model, target, prettierOpts) {
+async function writeResponse(responseKey, response, model, target, prettierOpts) {
   const name = ucFirst(responseKey);
   const schema = refResolve(model, response.content['application/json'].schema.$ref);
   schema.$$properties = Object.entries(schema.properties).map(([key, prop]) => ({
@@ -25,7 +25,7 @@ function writeResponse(responseKey, response, model, target, prettierOpts) {
   const data = responseTemplate(templateData);
   const filePath = `${target}/components/responses/${name}.ts`;
   const formatted = prettier.format(data, prettierOpts);
-  fse.outputFileSync(filePath, formatted);
+  await fse.outputFile(filePath, formatted);
 }
 
 module.exports = {
