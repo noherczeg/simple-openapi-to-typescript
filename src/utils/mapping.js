@@ -1,4 +1,5 @@
 const { enumName, ucFirst } = require('./naming');
+const { mediaTypeValues } = require('./enum-values');
 
 function isEnum(element) {
   return element.schema && element.schema.items && element.schema.items.enum;
@@ -76,10 +77,19 @@ function enumMapper(param) {
   };
 }
 
+function contentTypeEnumMapper(requestBodyContent) {
+  return Object.keys(mediaTypeValues)[
+    Object
+      .values(mediaTypeValues)
+      .findIndex((m) => m === Object.keys(requestBodyContent)[0])
+  ];
+}
+
 module.exports = {
   docsMapper,
   typeMapper,
   paramMapper,
   enumFilter,
   enumMapper,
+  contentTypeEnumMapper,
 };

@@ -1,6 +1,6 @@
 const {
   statusCodesValues, httpHeaderValues, mediaTypeValues, httpMethodValues,
-} = require('./generators/enum/enum-values');
+} = require('./utils/enum-values');
 const { writeEnum } = require('./generators/enum/write-enum');
 const { writeCommon } = require('./generators/common/write-common');
 const { writeResponse } = require('./generators/response/write-response');

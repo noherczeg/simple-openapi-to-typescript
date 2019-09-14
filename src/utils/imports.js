@@ -1,5 +1,3 @@
-const { pureName } = require('./naming');
-
 function consolidateImports(imports = [], importName = 'fileName') {
   const consolidated = {};
   imports.forEach((imp) => {
@@ -13,14 +11,6 @@ function consolidateImports(imports = [], importName = 'fileName') {
   return Object.entries(consolidated).map(([fileName, imps]) => ({ fileName, imports: imps }));
 }
 
-function importPathForRef(ref) {
-  const split = ref.split('/');
-  split.shift();
-  split.push(pureName(split.pop()));
-  return split.join('/');
-}
-
 module.exports = {
   consolidateImports,
-  importPathForRef,
 };

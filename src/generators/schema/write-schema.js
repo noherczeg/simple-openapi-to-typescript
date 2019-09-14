@@ -27,6 +27,15 @@ ${schema.$$docs && schema.$$docs.length ? `
 }
 `;
 
+function mapProps(input, $$name, imports, $$properties) {
+  Object.entries(input.properties || {}).forEach(([name, prop]) => {
+    const entry = propMapper(name, prop, input, $$name);
+
+    imports.push(...entry.imports);
+    $$properties.push(entry.data);
+  });
+}
+
 async function writeSchema(key, schema, model, target, prettierOpts) {
   const imports = [];
   const $$name = pureName(key);
@@ -45,12 +54,7 @@ async function writeSchema(key, schema, model, target, prettierOpts) {
       const baseName = pureName(schema.items.$ref.split('/').pop());
       imports.push({ ref: baseName, fileName: baseName });
     } else if (schema.type === 'object') {
-      Object.entries(schema.properties || {}).forEach(([name, prop]) => {
-        const entry = propMapper(name, prop, schema, $$name);
-
-        imports.push(...entry.imports);
-        $$properties.push(entry.data);
-      });
+      mapProps(schema, $$name, imports, $$properties);
     }
   } else if (schema.allOf) {
     const refs = schema.allOf.filter((a) => a.$ref);
@@ -67,13 +71,7 @@ async function writeSchema(key, schema, model, target, prettierOpts) {
 
     schema.allOf.filter((a) => !a.$ref).forEach((allOf) => {
       if (allOf.type === 'object') {
-        Object.entries(allOf.properties || {}).forEach(([name, prop]) => {
-          const entry = propMapper(name, prop, allOf, $$name);
-
-          // hoist internal properties with their corresponding imports.
-          imports.push(...entry.imports);
-          $$properties.push(entry.data);
-        });
+        mapProps(allOf, $$name, imports, $$properties);
       }
     });
   }

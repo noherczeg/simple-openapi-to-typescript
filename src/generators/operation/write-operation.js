@@ -2,8 +2,12 @@ const fse = require('fs-extra');
 const { EOL } = require('os');
 const prettier = require('prettier');
 const { operationName } = require('../../utils/naming');
-const { paramMapper, enumFilter, enumMapper } = require('../../utils/mapping');
-const { mediaTypeValues } = require('../enum/enum-values');
+const {
+  paramMapper,
+  enumFilter,
+  enumMapper,
+  contentTypeEnumMapper,
+} = require('../../utils/mapping');
 
 const pathTemplate = (pathData) => `
 /* Generated source, do not modify! */
@@ -51,13 +55,8 @@ async function writePath(key, method, pathData, path, model, target, prettierOpt
   const $$path = key.replace(/{/g, '${pathParams.');
   const $$method = method.toUpperCase();
   const $$requestContentType = pathData.requestBody
-    && pathData.requestBody
     && pathData.requestBody.content
-    ? Object.keys(mediaTypeValues)[
-      Object
-        .values(mediaTypeValues)
-        .findIndex((m) => m === Object.keys(pathData.requestBody.content)[0])
-    ] : null;
+    ? contentTypeEnumMapper(pathData.requestBody.content) : null;
   const $$queryParameters = queryParams.map(paramMapper);
   const $$pathParams = pathParams.map(paramMapper);
   const $$enums = [...queryParams, ...pathParams].filter(enumFilter).map(enumMapper);
