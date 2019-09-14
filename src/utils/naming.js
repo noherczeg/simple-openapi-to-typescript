@@ -9,6 +9,10 @@ function pureName(def, lowerFirst) {
   return lowerFirst ? `${name.charAt(0).toLowerCase()}${name.slice(1)}` : name;
 }
 
+function fileName(def) {
+  return pureName(def.split('/').pop());
+}
+
 function ucFirst(str) {
   return `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
 }
@@ -25,6 +29,7 @@ function enumName(name) {
 module.exports = {
   enumName,
   pureName,
+  fileName,
   ucFirst,
   operationName,
 };

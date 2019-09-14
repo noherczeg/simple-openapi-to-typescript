@@ -1,5 +1,5 @@
 const { typeMapper, docsMapper } = require('../../utils/mapping');
-const { pureName } = require('../../utils/naming');
+const { fileName } = require('../../utils/naming');
 
 const propTypesMapper = (...items) => {
   const types = [];
@@ -9,7 +9,7 @@ const propTypesMapper = (...items) => {
     if (a.type) {
       name = typeMapper(a.type);
     } else if (a.$ref) {
-      name = pureName(a.$ref.split('/').pop());
+      name = fileName(a.$ref);
       imports.push({ ref: name, fileName: name });
     }
     types.push(name);
@@ -28,7 +28,7 @@ const propMapper = (name, prop, schema, $$name) => {
   if (prop.type && prop.type === 'array') {
     const arrayType = prop.items && prop.items.$ref;
     if (arrayType) {
-      arrayTypeName = pureName(arrayType.split('/').pop());
+      arrayTypeName = fileName(arrayType);
       imports.push({ ref: arrayTypeName, fileName: arrayTypeName });
     } else {
       console.warn(`Cannot map property "${name}" of schema "${$$name}", because it's an inline object. Falling back to "any".`);

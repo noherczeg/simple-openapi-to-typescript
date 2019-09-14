@@ -1,7 +1,7 @@
 const fse = require('fs-extra');
 const prettier = require('prettier');
 const { EOL } = require('os');
-const { pureName } = require('../../utils/naming');
+const { pureName, fileName } = require('../../utils/naming');
 const { consolidateImports } = require('../../utils/imports');
 const { propMapper } = require('./utils');
 
@@ -42,7 +42,7 @@ async function writeSchema(key, schema, model, target, prettierOpts) {
   const $$consolidatedImports = [];
   const $$docs = [];
   const $$properties = [];
-  const $$arrayBase = schema.type && schema.type === 'array' ? pureName(schema.items.$ref.split('/').pop()) : null;
+  const $$arrayBase = schema.type && schema.type === 'array' ? fileName(schema.items.$ref) : null;
   let $$extend = null;
 
   if (schema.discriminator) {
@@ -51,7 +51,7 @@ async function writeSchema(key, schema, model, target, prettierOpts) {
 
   if (schema.type) {
     if (schema.type === 'array') {
-      const baseName = pureName(schema.items.$ref.split('/').pop());
+      const baseName = fileName(schema.items.$ref);
       imports.push({ ref: baseName, fileName: baseName });
     } else if (schema.type === 'object') {
       mapProps(schema, $$name, imports, $$properties);
@@ -64,7 +64,7 @@ async function writeSchema(key, schema, model, target, prettierOpts) {
     }
 
     if (refs.length > 0 && !$$extend) {
-      const toExtend = pureName(refs[0].$ref.split('/').pop());
+      const toExtend = fileName(refs[0].$ref);
       $$extend = toExtend;
       imports.push({ ref: toExtend, fileName: toExtend });
     }
