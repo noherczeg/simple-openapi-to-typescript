@@ -1,12 +1,10 @@
 # Simple OpenAPI to TypeScript
-
 ![npm](https://img.shields.io/npm/v/simple-openapi-to-typescript)
 ![GitHub](https://img.shields.io/github/license/noherczeg/simple-openapi-to-typescript)
 
 Yet another TypeScript generator for OpenAPI specifications.
 
 ## About
-
 What this package is intended to do:
 - support multiple input formats
 - support output formatting
@@ -19,6 +17,15 @@ objects
 - it won't generate sophisticated classes and services
 
 For examples please check the [examples](./examples) folder.
+
+### File names for Paths
+Since OpenAPI does not specify any mandatory field which would serve as a unique identifier for
+Paths, the current algorithm produces files names (converted to Pascal Case) from:
+- If available: `operationId` 
+- Otherwise if available: `summary`
+- As a fallback, if none of the above are available we create a special name.
+
+> Please refer to: [namings.js: operationName()](./src/utils/naming.js) for full details.
 
 ## Compatibility
 - [Version 3.0.2](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md)

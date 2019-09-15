@@ -36,7 +36,7 @@ function mapProps(input, $$name, imports, $$properties) {
   });
 }
 
-async function writeSchema(key, schema, model, target, prettierOpts) {
+function writeSchema(key, schema, model, target, prettierOpts) {
   const imports = [];
   const $$name = pureName(key);
   const $$consolidatedImports = [];
@@ -88,7 +88,7 @@ async function writeSchema(key, schema, model, target, prettierOpts) {
   });
   const filePath = `${target}/components/schemas/${$$name}.ts`;
   const formatted = prettier.format(data, prettierOpts);
-  await fse.outputFile(filePath, formatted);
+  fse.outputFileSync(filePath, formatted);
 }
 
 module.exports = {

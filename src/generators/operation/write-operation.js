@@ -46,12 +46,12 @@ ${pathData.$$requestContentType ? `export const requestContentType: MediaTypes =
 
 `;
 
-async function writePath(key, method, pathData, path, model, target, prettierOpts) {
+function writePath(key, method, pathData, path, model, target, prettierOpts) {
   const allParams = [...(pathData.parameters || []), ...(path.parameters || [])];
   const queryParams = allParams.filter((p) => p.in === 'query');
   const pathParams = allParams.filter((p) => p.in === 'path');
 
-  const $$name = operationName(method, key);
+  const $$name = operationName(method, key, pathData);
   const $$path = key.replace(/{/g, '${pathParams.');
   const $$method = method.toUpperCase();
   const $$requestContentType = pathData.requestBody
@@ -80,7 +80,7 @@ async function writePath(key, method, pathData, path, model, target, prettierOpt
   });
   const filePath = `${target}/paths/${$$name}.ts`;
   const formatted = prettier.format(data, prettierOpts);
-  await fse.outputFile(filePath, formatted);
+  fse.outputFileSync(filePath, formatted);
 }
 
 module.exports = {

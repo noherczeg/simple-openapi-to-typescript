@@ -12,7 +12,7 @@ export enum ${enumData.$$name} {
 
 `;
 
-async function writeEnum(name, values, target, prettierOpts) {
+function writeEnum(name, values, target, prettierOpts) {
   const templateData = {
     $$name: name,
     data: Object.entries(values).map(([code, value]) => ({
@@ -23,7 +23,7 @@ async function writeEnum(name, values, target, prettierOpts) {
   const data = enumTemplate(templateData);
   const filePath = `${target}/constants/${name}.ts`;
   const formatted = prettier.format(data, prettierOpts);
-  await fse.outputFile(filePath, formatted);
+  fse.outputFileSync(filePath, formatted);
 }
 
 module.exports = {

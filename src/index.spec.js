@@ -13,8 +13,8 @@ const pathOutputFor = (root, fileName) => fs.readFileSync(`${root}/paths/${fileN
 
 describe('openapi-web-gen', () => {
   describe('flags', () => {
-    beforeAll(async () => {
-      await generator(path.resolve(__dirname, '__fixtures__/OpenAPI-Specification/examples/v3.0/petstore.yaml'), {
+    beforeAll(() => {
+      generator(path.resolve(__dirname, '__fixtures__/OpenAPI-Specification/examples/v3.0/petstore.yaml'), {
         target: openApiPetStoreWithOptionsPath,
         prettierOpts: path.resolve(__dirname, '__fixtures__/OpenAPI-Specification/prettier-custom.json'),
       });
@@ -26,8 +26,8 @@ describe('openapi-web-gen', () => {
   });
 
   describe('odata-openapi/Northwind.openapi3.json should generate', () => {
-    beforeAll(async () => {
-      await generator(path.resolve(__dirname, '__fixtures__/odata-openapi/examples/Northwind.openapi3.json'), { target: odataOpenApiPath });
+    beforeAll(() => {
+      generator(path.resolve(__dirname, '__fixtures__/odata-openapi/examples/Northwind.openapi3.json'), { target: odataOpenApiPath });
     });
 
     it('common/Common.ts', () => {
@@ -69,21 +69,26 @@ describe('openapi-web-gen', () => {
     });
 
     describe('paths/', () => {
-      it('SalesTotalsByAmountsGet.ts', () => {
-        expect(pathOutputFor(odataOpenApiPath, 'SalesTotalsByAmountsGet.ts'))
+      it('GetEntitiesFromSalesTotalsByAmounts.ts', () => {
+        expect(pathOutputFor(odataOpenApiPath, 'GetEntitiesFromSalesTotalsByAmounts.ts'))
           .toMatchSnapshot();
       });
 
-      it('CategoriesCategoryIDProductsGet.ts', () => {
-        expect(pathOutputFor(odataOpenApiPath, 'CategoriesCategoryIDProductsGet.ts'))
+      it('GetEntitiesFromRelatedProducts.ts', () => {
+        expect(pathOutputFor(odataOpenApiPath, 'GetEntitiesFromRelatedProducts.ts'))
+          .toMatchSnapshot();
+      });
+
+      it('UpdateEntityInAlphabeticalListOfProducts.ts', () => {
+        expect(pathOutputFor(odataOpenApiPath, 'UpdateEntityInAlphabeticalListOfProducts.ts'))
           .toMatchSnapshot();
       });
     });
   });
 
   describe('OpenAPI-Specification/examples/v3.0/petstore.yaml should generate', () => {
-    beforeAll(async () => {
-      await generator(path.resolve(__dirname, '__fixtures__/OpenAPI-Specification/examples/v3.0/petstore.yaml'), { target: openApiPetStorePath });
+    beforeAll(() => {
+      generator(path.resolve(__dirname, '__fixtures__/OpenAPI-Specification/examples/v3.0/petstore.yaml'), { target: openApiPetStorePath });
     });
 
     it('common/Common.ts', () => {
@@ -106,8 +111,8 @@ describe('openapi-web-gen', () => {
   });
 
   describe('OpenAPI-Specification/examples/v3.0/petstore-expanded.yaml should generate', () => {
-    beforeAll(async () => {
-      await generator(path.resolve(__dirname, '__fixtures__/OpenAPI-Specification/examples/v3.0/petstore-expanded.yaml'), { target: openApiPetStoreExpPath });
+    beforeAll(() => {
+      generator(path.resolve(__dirname, '__fixtures__/OpenAPI-Specification/examples/v3.0/petstore-expanded.yaml'), { target: openApiPetStoreExpPath });
     });
 
     it('common/Common.ts', () => {
@@ -129,15 +134,15 @@ describe('openapi-web-gen', () => {
     });
 
     describe('paths/', () => {
-      it('PetsPost.ts', () => {
-        expect(pathOutputFor(openApiPetStoreExpPath, 'PetsPost.ts')).toMatchSnapshot();
+      it('AddPet.ts', () => {
+        expect(pathOutputFor(openApiPetStoreExpPath, 'AddPet.ts')).toMatchSnapshot();
       });
     });
   });
 
   describe('OpenAPI-Specification/examples/v3.0/link-example.yaml should generate', () => {
-    beforeAll(async () => {
-      await generator(path.resolve(__dirname, '__fixtures__/OpenAPI-Specification/examples/v3.0/link-example.yaml'), { target: openApiLinkPath });
+    beforeAll(() => {
+      generator(path.resolve(__dirname, '__fixtures__/OpenAPI-Specification/examples/v3.0/link-example.yaml'), { target: openApiLinkPath });
     });
 
     describe('components/schemas/', () => {
@@ -156,8 +161,8 @@ describe('openapi-web-gen', () => {
   });
 
   describe('OpenAPI-Specification/examples/v3.0/uspto.yaml should generate', () => {
-    beforeAll(async () => {
-      await generator(path.resolve(__dirname, '__fixtures__/OpenAPI-Specification/examples/v3.0/uspto.yaml'), { target: openApiUsptoPath });
+    beforeAll(() => {
+      generator(path.resolve(__dirname, '__fixtures__/OpenAPI-Specification/examples/v3.0/uspto.yaml'), { target: openApiUsptoPath });
     });
 
     it('common/Common.ts', () => {

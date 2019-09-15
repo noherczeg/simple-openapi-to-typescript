@@ -169,7 +169,7 @@ export interface Pet extends NewPet {
 "
 `;
 
-exports[`openapi-web-gen OpenAPI-Specification/examples/v3.0/petstore-expanded.yaml should generate paths/ PetsPost.ts 1`] = `
+exports[`openapi-web-gen OpenAPI-Specification/examples/v3.0/petstore-expanded.yaml should generate paths/ AddPet.ts 1`] = `
 "/* Generated source, do not modify! */
 
 import { HttpMethods } from \\"../constants/HttpMethods\\";
@@ -632,7 +632,7 @@ export interface NorthwindModelOrderDetail {
 "
 `;
 
-exports[`openapi-web-gen odata-openapi/Northwind.openapi3.json should generate paths/ CategoriesCategoryIDProductsGet.ts 1`] = `
+exports[`openapi-web-gen odata-openapi/Northwind.openapi3.json should generate paths/ GetEntitiesFromRelatedProducts.ts 1`] = `
 "/* Generated source, do not modify! */
 
 import { HttpMethods } from \\"../constants/HttpMethods\\";
@@ -690,7 +690,7 @@ export enum ExpandEnum {
 }
 
 export interface PathParams {
-  CategoryID: number;
+  SupplierID: number;
 }
 
 export interface RequestSearchParams {
@@ -701,14 +701,14 @@ export interface RequestSearchParams {
 }
 
 export function createPath(pathParams: PathParams): string {
-  return \`/Categories(\${pathParams.CategoryID})/Products\`;
+  return \`/Suppliers(\${pathParams.SupplierID})/Products\`;
 }
 
 export const method: HttpMethods = HttpMethods.GET;
 "
 `;
 
-exports[`openapi-web-gen odata-openapi/Northwind.openapi3.json should generate paths/ SalesTotalsByAmountsGet.ts 1`] = `
+exports[`openapi-web-gen odata-openapi/Northwind.openapi3.json should generate paths/ GetEntitiesFromSalesTotalsByAmounts.ts 1`] = `
 "/* Generated source, do not modify! */
 
 import { HttpMethods } from \\"../constants/HttpMethods\\";
@@ -748,5 +748,31 @@ export function createPath(): string {
 }
 
 export const method: HttpMethods = HttpMethods.GET;
+"
+`;
+
+exports[`openapi-web-gen odata-openapi/Northwind.openapi3.json should generate paths/ UpdateEntityInAlphabeticalListOfProducts.ts 1`] = `
+"/* Generated source, do not modify! */
+
+import { HttpMethods } from \\"../constants/HttpMethods\\";
+import { MediaTypes } from \\"../constants/MediaTypes\\";
+
+export interface PathParams {
+  CategoryName: string;
+
+  Discontinued: boolean;
+
+  ProductID: number;
+
+  ProductName: string;
+}
+
+export function createPath(pathParams: PathParams): string {
+  return \`/Alphabetical_list_of_products(CategoryName='\${pathParams.CategoryName}',Discontinued='\${pathParams.Discontinued}',ProductID=\${pathParams.ProductID},ProductName='\${pathParams.ProductName}')\`;
+}
+
+export const method: HttpMethods = HttpMethods.PATCH;
+
+export const requestContentType: MediaTypes = MediaTypes.APPLICATION_JSON;
 "
 `;
