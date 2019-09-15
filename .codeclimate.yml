@@ -8,3 +8,14 @@ exclude_patterns:
   - "src/__snapshots__"
   - "src/**/*.spec.js"
   - "src/**/*-template.js"
+
+checks:
+  argument-count:
+    config:
+      threshold: 8
+  method-complexity:
+    config:
+      threshold: 15
+  method-lines:
+    config:
+      threshold: 45
