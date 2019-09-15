@@ -1,16 +1,6 @@
 const fse = require('fs-extra');
 const prettier = require('prettier');
-
-const enumTemplate = (enumData) => `
-/* Generated source, do not modify! */
-
-export enum ${enumData.$$name} {
-  ${enumData.data.map((status) => `
-    ${status.code} = ${typeof status.value === 'string' ? `'${status.value}'` : status.value},
-  `).join('')}
-}
-
-`;
+const enumTemplate = require('./enum-template');
 
 function writeEnum(name, values, target, prettierOpts) {
   const templateData = {

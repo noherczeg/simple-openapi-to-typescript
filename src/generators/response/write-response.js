@@ -3,15 +3,7 @@ const prettier = require('prettier');
 const { refResolve } = require('../../utils/ref-resolver');
 const { ucFirst } = require('../../utils/naming');
 const { typeMapper } = require('../../utils/mapping');
-
-const responseTemplate = (response) => `
-/* Generated source, do not modify! */
-
-export interface ${response.name} {${response.schema.$$properties.map((prop) => `
-  ${prop.key} ${prop.required ? '' : '?'}: ${prop.type};
-`).join('')}
-}
-`;
+const responseTemplate = require('./response-template');
 
 function writeResponse(responseKey, response, model, target, prettierOpts) {
   const name = ucFirst(responseKey);
