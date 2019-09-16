@@ -1,6 +1,5 @@
 /* Generated source, do not modify! */
 
-import { NorthwindModelEmployeeCreate } from "./NorthwindModelEmployeeCreate";
 import { NorthwindModelOrderCreate } from "./NorthwindModelOrderCreate";
 import { NorthwindModelTerritoryCreate } from "./NorthwindModelTerritoryCreate";
 

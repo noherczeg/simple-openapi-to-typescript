@@ -54,7 +54,7 @@ function writeSchema(key, schema, model, target, prettierOpts) {
     });
   }
 
-  $$consolidatedImports.push(...consolidateImports(imports));
+  $$consolidatedImports.push(...consolidateImports(imports, $$name));
 
   const data = schemaTemplate({
     $$name,

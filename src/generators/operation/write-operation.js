@@ -1,6 +1,7 @@
 const fse = require('fs-extra');
 const prettier = require('prettier');
 const { operationName } = require('../../utils/naming');
+const { consolidateImports } = require('../../utils/imports');
 const {
   paramMapper,
   enumFilter,
@@ -10,6 +11,10 @@ const {
 const operationTemplate = require('./operation-template');
 
 function writePath(key, method, pathData, path, model, target, prettierOpts) {
+  const imports = [
+    { ref: 'HttpMethods', fileName: '../constants/HttpMethods' },
+  ];
+  const $$consolidatedImports = [];
   const allParams = [...(pathData.parameters || []), ...(path.parameters || [])];
   const queryParams = allParams.filter((p) => p.in === 'query');
   const pathParams = allParams.filter((p) => p.in === 'path');
@@ -23,13 +28,12 @@ function writePath(key, method, pathData, path, model, target, prettierOpts) {
   const $$queryParameters = queryParams.map(paramMapper);
   const $$pathParams = pathParams.map(paramMapper);
   const $$enums = [...queryParams, ...pathParams].filter(enumFilter).map(enumMapper);
-  const $$consolidatedImports = [
-    { fileName: '../constants/HttpMethods', imports: ['HttpMethods'] },
-  ];
 
   if ($$requestContentType) {
-    $$consolidatedImports.push({ fileName: '../constants/MediaTypes', imports: ['MediaTypes'] });
+    imports.push({ ref: 'MediaTypes', fileName: '../constants/MediaTypes' });
   }
+
+  $$consolidatedImports.push(...consolidateImports(imports, $$name, 'ref'));
 
   const data = operationTemplate({
     $$name,

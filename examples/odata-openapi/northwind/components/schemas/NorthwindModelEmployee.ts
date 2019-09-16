@@ -1,6 +1,5 @@
 /* Generated source, do not modify! */
 
-import { NorthwindModelEmployee } from "./NorthwindModelEmployee";
 import { NorthwindModelOrder } from "./NorthwindModelOrder";
 import { NorthwindModelTerritory } from "./NorthwindModelTerritory";
 

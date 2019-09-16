@@ -489,7 +489,6 @@ export interface NorthwindModelCustomer {
 exports[`openapi-web-gen odata-openapi/Northwind.openapi3.json should generate components/schemas/ NorthwindModelEmployee.ts 1`] = `
 "/* Generated source, do not modify! */
 
-import { NorthwindModelEmployee } from \\"./NorthwindModelEmployee\\";
 import { NorthwindModelOrder } from \\"./NorthwindModelOrder\\";
 import { NorthwindModelTerritory } from \\"./NorthwindModelTerritory\\";
 
