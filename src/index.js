@@ -9,6 +9,7 @@ const { processModel } = require('./process-model');
 
 const defaultPrettierOpts = {
   parser: 'typescript',
+  endOfLine: 'lf',
 };
 
 module.exports = (modelPath, cmd) => {

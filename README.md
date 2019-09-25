@@ -55,7 +55,8 @@ Path to prettier configuration file (JSON).
 - Default configuration object:
 ```json
 {
-  "parser": "typescript"
+  "parser": "typescript",
+  "endOfLine": "lf"
 }
 ```
 
