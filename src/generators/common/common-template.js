@@ -12,30 +12,30 @@ export interface ServerVariableObject {
 export interface ServerObject {
   url: string,
   description?: string,
-  variables?: Map<string, ServerVariableObject>,
+  variables?: Record<string, ServerVariableObject>,
 }
 
-export type HostNameMapper = (servers: ServerObject[]) => string;
+export type ServerMapper = (servers: ServerObject[]) => string;
 
 export const servers: ServerObject[] = [${constants.servers.map((server) => `
   {
     ${server.url ? `url: '${server.url.replace(/{/g, '${')}',` : ''}
     ${server.description ? `description: '${server.description}',` : ''}
     ${server.variables ? `
-      variables: new Map<string, ServerVariableObject>([
+      variables: {
           ${Object.entries(server.variables).map(([variable, vData]) => `
-            ['${variable}', {
+            '${variable}': {
               ${vData.default ? `default: '${vData.default}',` : ''}
               ${vData.description ? `description: '${vData.description}',` : ''}
               ${vData.enum && vData.enum.length ? `enum: ['${vData.enum.join('\', \'')}'],` : ''}
-            }],
+            },
           `).join(EOL)}
-      ]),
+      },
     ` : ''}
   }
 `).join('')}];
 
-export function createHostName(mapper: HostNameMapper): string {
+export function createBaseUrl(mapper: ServerMapper): string {
   return mapper(servers);
 }
 `;

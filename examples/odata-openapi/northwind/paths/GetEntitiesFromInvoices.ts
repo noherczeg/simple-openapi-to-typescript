@@ -98,8 +98,12 @@ export interface RequestSearchParams {
   $select?: Set<SelectEnum>;
 }
 
-export function createPath(): string {
-  return `/Invoices`;
+/**
+ 
+ * @param {string} [baseUrl] If present, will be prepended to the URI. If missing, the result will be ensured to be a relative URL.
+ */
+export function createPath(baseUrl?: string): string {
+  return baseUrl ? `${baseUrl}/Invoices` : `Invoices`;
 }
 
 export const method: HttpMethods = HttpMethods.GET;

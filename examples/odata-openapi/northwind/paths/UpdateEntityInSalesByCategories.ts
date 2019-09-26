@@ -2,6 +2,7 @@
 
 import { HttpMethods } from "../constants/HttpMethods";
 import { MediaTypes } from "../constants/MediaTypes";
+import { NorthwindModelSalesByCategoryUpdate } from "../components/schemas/NorthwindModelSalesByCategoryUpdate";
 
 export interface PathParams {
   CategoryID: number;
@@ -11,10 +12,20 @@ export interface PathParams {
   ProductName: string;
 }
 
-export function createPath(pathParams: PathParams): string {
-  return `/Sales_by_Categories(CategoryID=${pathParams.CategoryID},CategoryName='${pathParams.CategoryName}',ProductName='${pathParams.ProductName}')`;
+/**
+ * @param {PathParams} pathParams Object containing values which will be interpolated to the path segment
+ * @param {string} [baseUrl] If present, will be prepended to the URI. If missing, the result will be ensured to be a relative URL.
+ */
+export function createPath(pathParams: PathParams, baseUrl?: string): string {
+  return baseUrl
+    ? `${baseUrl}/Sales_by_Categories(CategoryID=${pathParams.CategoryID},CategoryName='${pathParams.CategoryName}',ProductName='${pathParams.ProductName}')`
+    : `Sales_by_Categories(CategoryID=${pathParams.CategoryID},CategoryName='${pathParams.CategoryName}',ProductName='${pathParams.ProductName}')`;
 }
 
 export const method: HttpMethods = HttpMethods.PATCH;
 
-export const requestContentType: MediaTypes = MediaTypes.APPLICATION_JSON;
+export const headers: Record<string, string> = {
+  "Content-Type": MediaTypes.APPLICATION_JSON
+};
+
+export type RequestBody = NorthwindModelSalesByCategoryUpdate;

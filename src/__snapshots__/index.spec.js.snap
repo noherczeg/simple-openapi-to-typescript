@@ -45,10 +45,10 @@ export interface ServerVariableObject {
 export interface ServerObject {
   url: string;
   description?: string;
-  variables?: Map<string, ServerVariableObject>;
+  variables?: Record<string, ServerVariableObject>;
 }
 
-export type HostNameMapper = (servers: ServerObject[]) => string;
+export type ServerMapper = (servers: ServerObject[]) => string;
 
 export const servers: ServerObject[] = [
   {
@@ -56,7 +56,7 @@ export const servers: ServerObject[] = [
   }
 ];
 
-export function createHostName(mapper: HostNameMapper): string {
+export function createBaseUrl(mapper: ServerMapper): string {
   return mapper(servers);
 }
 "
@@ -113,10 +113,10 @@ export interface ServerVariableObject {
 export interface ServerObject {
   url: string;
   description?: string;
-  variables?: Map<string, ServerVariableObject>;
+  variables?: Record<string, ServerVariableObject>;
 }
 
-export type HostNameMapper = (servers: ServerObject[]) => string;
+export type ServerMapper = (servers: ServerObject[]) => string;
 
 export const servers: ServerObject[] = [
   {
@@ -124,7 +124,7 @@ export const servers: ServerObject[] = [
   }
 ];
 
-export function createHostName(mapper: HostNameMapper): string {
+export function createBaseUrl(mapper: ServerMapper): string {
   return mapper(servers);
 }
 "
@@ -174,14 +174,23 @@ exports[`openapi-web-gen OpenAPI-Specification/examples/v3.0/petstore-expanded.y
 
 import { HttpMethods } from \\"../constants/HttpMethods\\";
 import { MediaTypes } from \\"../constants/MediaTypes\\";
+import { NewPet } from \\"../components/schemas/NewPet\\";
 
-export function createPath(): string {
-  return \`/pets\`;
+/**
+ 
+ * @param {string} [baseUrl] If present, will be prepended to the URI. If missing, the result will be ensured to be a relative URL.
+ */
+export function createPath(baseUrl?: string): string {
+  return baseUrl ? \`\${baseUrl}/pets\` : \`pets\`;
 }
 
 export const method: HttpMethods = HttpMethods.POST;
 
-export const requestContentType: MediaTypes = MediaTypes.APPLICATION_JSON;
+export const headers: Record<string, string> = {
+  \\"Content-Type\\": MediaTypes.APPLICATION_JSON
+};
+
+export type RequestBody = NewPet;
 "
 `;
 
@@ -197,29 +206,26 @@ export interface ServerVariableObject {
 export interface ServerObject {
   url: string;
   description?: string;
-  variables?: Map<string, ServerVariableObject>;
+  variables?: Record<string, ServerVariableObject>;
 }
 
-export type HostNameMapper = (servers: ServerObject[]) => string;
+export type ServerMapper = (servers: ServerObject[]) => string;
 
 export const servers: ServerObject[] = [
   {
     url: \\"\${scheme}://developer.uspto.gov/ds-api\\",
 
-    variables: new Map<string, ServerVariableObject>([
-      [
-        \\"scheme\\",
-        {
-          default: \\"https\\",
-          description: \\"The Data Set API is accessible via https and http\\",
-          enum: [\\"https\\", \\"http\\"]
-        }
-      ]
-    ])
+    variables: {
+      scheme: {
+        default: \\"https\\",
+        description: \\"The Data Set API is accessible via https and http\\",
+        enum: [\\"https\\", \\"http\\"]
+      }
+    }
   }
 ];
 
-export function createHostName(mapper: HostNameMapper): string {
+export function createBaseUrl(mapper: ServerMapper): string {
   return mapper(servers);
 }
 "
@@ -248,10 +254,10 @@ export interface ServerVariableObject {
 export interface ServerObject {
     url: string;
     description?: string;
-    variables?: Map<string, ServerVariableObject>;
+    variables?: Record<string, ServerVariableObject>;
 }
 
-export type HostNameMapper = (servers: ServerObject[]) => string;
+export type ServerMapper = (servers: ServerObject[]) => string;
 
 export const servers: ServerObject[] = [
     {
@@ -259,7 +265,7 @@ export const servers: ServerObject[] = [
     }
 ];
 
-export function createHostName(mapper: HostNameMapper): string {
+export function createBaseUrl(mapper: ServerMapper): string {
     return mapper(servers);
 }
 "
@@ -277,10 +283,10 @@ export interface ServerVariableObject {
 export interface ServerObject {
   url: string;
   description?: string;
-  variables?: Map<string, ServerVariableObject>;
+  variables?: Record<string, ServerVariableObject>;
 }
 
-export type HostNameMapper = (servers: ServerObject[]) => string;
+export type ServerMapper = (servers: ServerObject[]) => string;
 
 export const servers: ServerObject[] = [
   {
@@ -288,7 +294,7 @@ export const servers: ServerObject[] = [
   }
 ];
 
-export function createHostName(mapper: HostNameMapper): string {
+export function createBaseUrl(mapper: ServerMapper): string {
   return mapper(servers);
 }
 "
@@ -699,8 +705,14 @@ export interface RequestSearchParams {
   $expand?: Set<ExpandEnum>;
 }
 
-export function createPath(pathParams: PathParams): string {
-  return \`/Suppliers(\${pathParams.SupplierID})/Products\`;
+/**
+ * @param {PathParams} pathParams Object containing values which will be interpolated to the path segment
+ * @param {string} [baseUrl] If present, will be prepended to the URI. If missing, the result will be ensured to be a relative URL.
+ */
+export function createPath(pathParams: PathParams, baseUrl?: string): string {
+  return baseUrl
+    ? \`\${baseUrl}/Suppliers(\${pathParams.SupplierID})/Products\`
+    : \`Suppliers(\${pathParams.SupplierID})/Products\`;
 }
 
 export const method: HttpMethods = HttpMethods.GET;
@@ -742,8 +754,14 @@ export interface RequestSearchParams {
   $select?: Set<SelectEnum>;
 }
 
-export function createPath(): string {
-  return \`/Sales_Totals_by_Amounts\`;
+/**
+ 
+ * @param {string} [baseUrl] If present, will be prepended to the URI. If missing, the result will be ensured to be a relative URL.
+ */
+export function createPath(baseUrl?: string): string {
+  return baseUrl
+    ? \`\${baseUrl}/Sales_Totals_by_Amounts\`
+    : \`Sales_Totals_by_Amounts\`;
 }
 
 export const method: HttpMethods = HttpMethods.GET;
@@ -755,6 +773,7 @@ exports[`openapi-web-gen odata-openapi/Northwind.openapi3.json should generate p
 
 import { HttpMethods } from \\"../constants/HttpMethods\\";
 import { MediaTypes } from \\"../constants/MediaTypes\\";
+import { NorthwindModelAlphabeticalListOfProductUpdate } from \\"../components/schemas/NorthwindModelAlphabeticalListOfProductUpdate\\";
 
 export interface PathParams {
   CategoryName: string;
@@ -766,12 +785,22 @@ export interface PathParams {
   ProductName: string;
 }
 
-export function createPath(pathParams: PathParams): string {
-  return \`/Alphabetical_list_of_products(CategoryName='\${pathParams.CategoryName}',Discontinued='\${pathParams.Discontinued}',ProductID=\${pathParams.ProductID},ProductName='\${pathParams.ProductName}')\`;
+/**
+ * @param {PathParams} pathParams Object containing values which will be interpolated to the path segment
+ * @param {string} [baseUrl] If present, will be prepended to the URI. If missing, the result will be ensured to be a relative URL.
+ */
+export function createPath(pathParams: PathParams, baseUrl?: string): string {
+  return baseUrl
+    ? \`\${baseUrl}/Alphabetical_list_of_products(CategoryName='\${pathParams.CategoryName}',Discontinued='\${pathParams.Discontinued}',ProductID=\${pathParams.ProductID},ProductName='\${pathParams.ProductName}')\`
+    : \`Alphabetical_list_of_products(CategoryName='\${pathParams.CategoryName}',Discontinued='\${pathParams.Discontinued}',ProductID=\${pathParams.ProductID},ProductName='\${pathParams.ProductName}')\`;
 }
 
 export const method: HttpMethods = HttpMethods.PATCH;
 
-export const requestContentType: MediaTypes = MediaTypes.APPLICATION_JSON;
+export const headers: Record<string, string> = {
+  \\"Content-Type\\": MediaTypes.APPLICATION_JSON
+};
+
+export type RequestBody = NorthwindModelAlphabeticalListOfProductUpdate;
 "
 `;

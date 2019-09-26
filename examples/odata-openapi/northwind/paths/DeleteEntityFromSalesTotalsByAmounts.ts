@@ -8,8 +8,14 @@ export interface PathParams {
   OrderID: number;
 }
 
-export function createPath(pathParams: PathParams): string {
-  return `/Sales_Totals_by_Amounts(CompanyName='${pathParams.CompanyName}',OrderID=${pathParams.OrderID})`;
+/**
+ * @param {PathParams} pathParams Object containing values which will be interpolated to the path segment
+ * @param {string} [baseUrl] If present, will be prepended to the URI. If missing, the result will be ensured to be a relative URL.
+ */
+export function createPath(pathParams: PathParams, baseUrl?: string): string {
+  return baseUrl
+    ? `${baseUrl}/Sales_Totals_by_Amounts(CompanyName='${pathParams.CompanyName}',OrderID=${pathParams.OrderID})`
+    : `Sales_Totals_by_Amounts(CompanyName='${pathParams.CompanyName}',OrderID=${pathParams.OrderID})`;
 }
 
 export const method: HttpMethods = HttpMethods.DELETE;

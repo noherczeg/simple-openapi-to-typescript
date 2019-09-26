@@ -8,8 +8,14 @@ export interface PathParams {
   version: string;
 }
 
-export function createPath(pathParams: PathParams): string {
-  return `/${pathParams.dataset}/${pathParams.version}/fields`;
+/**
+ * @param {PathParams} pathParams Object containing values which will be interpolated to the path segment
+ * @param {string} [baseUrl] If present, will be prepended to the URI. If missing, the result will be ensured to be a relative URL.
+ */
+export function createPath(pathParams: PathParams, baseUrl?: string): string {
+  return baseUrl
+    ? `${baseUrl}/${pathParams.dataset}/${pathParams.version}/fields`
+    : `${pathParams.dataset}/${pathParams.version}/fields`;
 }
 
 export const method: HttpMethods = HttpMethods.GET;

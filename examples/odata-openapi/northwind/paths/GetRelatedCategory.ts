@@ -29,8 +29,14 @@ export interface RequestSearchParams {
   $expand?: Set<ExpandEnum>;
 }
 
-export function createPath(pathParams: PathParams): string {
-  return `/Products(${pathParams.ProductID})/Category`;
+/**
+ * @param {PathParams} pathParams Object containing values which will be interpolated to the path segment
+ * @param {string} [baseUrl] If present, will be prepended to the URI. If missing, the result will be ensured to be a relative URL.
+ */
+export function createPath(pathParams: PathParams, baseUrl?: string): string {
+  return baseUrl
+    ? `${baseUrl}/Products(${pathParams.ProductID})/Category`
+    : `Products(${pathParams.ProductID})/Category`;
 }
 
 export const method: HttpMethods = HttpMethods.GET;

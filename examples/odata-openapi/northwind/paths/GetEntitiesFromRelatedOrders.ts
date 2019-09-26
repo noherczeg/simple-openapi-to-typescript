@@ -78,8 +78,14 @@ export interface RequestSearchParams {
   $expand?: Set<ExpandEnum>;
 }
 
-export function createPath(pathParams: PathParams): string {
-  return `/Shippers(${pathParams.ShipperID})/Orders`;
+/**
+ * @param {PathParams} pathParams Object containing values which will be interpolated to the path segment
+ * @param {string} [baseUrl] If present, will be prepended to the URI. If missing, the result will be ensured to be a relative URL.
+ */
+export function createPath(pathParams: PathParams, baseUrl?: string): string {
+  return baseUrl
+    ? `${baseUrl}/Shippers(${pathParams.ShipperID})/Orders`
+    : `Shippers(${pathParams.ShipperID})/Orders`;
 }
 
 export const method: HttpMethods = HttpMethods.GET;

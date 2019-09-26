@@ -18,8 +18,14 @@ export interface RequestSearchParams {
   $select?: Set<SelectEnum>;
 }
 
-export function createPath(pathParams: PathParams): string {
-  return `/Category_Sales_for_1997('${pathParams.CategoryName}')`;
+/**
+ * @param {PathParams} pathParams Object containing values which will be interpolated to the path segment
+ * @param {string} [baseUrl] If present, will be prepended to the URI. If missing, the result will be ensured to be a relative URL.
+ */
+export function createPath(pathParams: PathParams, baseUrl?: string): string {
+  return baseUrl
+    ? `${baseUrl}/Category_Sales_for_1997('${pathParams.CategoryName}')`
+    : `Category_Sales_for_1997('${pathParams.CategoryName}')`;
 }
 
 export const method: HttpMethods = HttpMethods.GET;

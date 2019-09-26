@@ -27,12 +27,20 @@ export interface RequestSearchParams {
   ${pathData.$$queryParameters.map((qp) => `${qp.name}${qp.required ? '' : '?'}: ${qp.type} ${qp.subType ? `<${qp.subType}>` : ''}`).join(EOL)}
 }` : ''}
 
-export function createPath(${pathData.$$pathParams && pathData.$$pathParams.length ? 'pathParams: PathParams' : ''}): string {
-  return \`${pathData.$$path}\`;
+/**
+ ${pathData.$$pathParams && pathData.$$pathParams.length ? '* @param {PathParams} pathParams Object containing values which will be interpolated to the path segment' : ''}
+ * @param {string} [baseUrl] If present, will be prepended to the URI. If missing, the result will be ensured to be a relative URL.
+ */
+export function createPath(${pathData.$$pathParams && pathData.$$pathParams.length ? 'pathParams: PathParams, ' : ''}baseUrl?: string): string {
+  return baseUrl ? \`\${baseUrl}${pathData.$$path}\` : \`${pathData.$$path.replace(/^\/+/, '')}\`;
 }
 
 export const method: HttpMethods = HttpMethods.${pathData.$$method};
 
-${pathData.$$requestContentType ? `export const requestContentType: MediaTypes = MediaTypes.${pathData.$$requestContentType}` : ''}
+${pathData.$$requestContentType ? `export const headers: Record<string, string> = {
+  'Content-Type': MediaTypes.${pathData.$$requestContentType},
+};` : ''}
+
+${pathData.$$requestBodyType ? `export type RequestBody = ${pathData.$$requestBodyType}` : ''}
 
 `;

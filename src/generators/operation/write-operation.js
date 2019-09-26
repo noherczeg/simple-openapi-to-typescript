@@ -1,6 +1,6 @@
 const fse = require('fs-extra');
 const prettier = require('prettier');
-const { operationName } = require('../../utils/naming');
+const { operationName, fileName } = require('../../utils/naming');
 const { consolidateImports } = require('../../utils/imports');
 const {
   paramMapper,
@@ -9,6 +9,21 @@ const {
   contentTypeEnumMapper,
 } = require('../../utils/mapping');
 const operationTemplate = require('./operation-template');
+
+function mapRequestBodyType(pathData) {
+  if (pathData.requestBody && pathData.requestBody.content) {
+    console.log(pathData.requestBody.content);
+    const format = Object.keys(pathData.requestBody.content)[0];
+    const type = pathData.requestBody.content[format];
+    const ref = type.schema && type.schema.$ref ? type.schema.$ref : null;
+
+    if (ref) {
+      return fileName(ref);
+    }
+  }
+
+  return undefined;
+}
 
 function writePath(key, method, pathData, path, model, target, prettierOpts) {
   const imports = [
@@ -25,12 +40,17 @@ function writePath(key, method, pathData, path, model, target, prettierOpts) {
   const $$requestContentType = pathData.requestBody
     && pathData.requestBody.content
     ? contentTypeEnumMapper(pathData.requestBody.content) : null;
+  const $$requestBodyType = mapRequestBodyType(pathData);
   const $$queryParameters = queryParams.map(paramMapper);
   const $$pathParams = pathParams.map(paramMapper);
   const $$enums = [...queryParams, ...pathParams].filter(enumFilter).map(enumMapper);
 
   if ($$requestContentType) {
     imports.push({ ref: 'MediaTypes', fileName: '../constants/MediaTypes' });
+  }
+
+  if ($$requestBodyType) {
+    imports.push({ ref: $$requestBodyType, fileName: `../components/schemas/${$$requestBodyType}` });
   }
 
   $$consolidatedImports.push(...consolidateImports(imports, $$name, 'ref'));
@@ -40,6 +60,7 @@ function writePath(key, method, pathData, path, model, target, prettierOpts) {
     $$path,
     $$method,
     $$requestContentType,
+    $$requestBodyType,
     $$queryParameters,
     $$pathParams,
     $$consolidatedImports,

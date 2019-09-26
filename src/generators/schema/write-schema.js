@@ -21,7 +21,7 @@ function writeSchema(key, schema, model, target, prettierOpts) {
   const $$docs = [];
   const $$properties = [];
   const $$arrayBase = schema.type && schema.type === 'array' ? fileName(schema.items.$ref) : null;
-  let $$extend = null;
+  const $$extend = [];
 
   if (schema.discriminator) {
     $$docs.push({ name: 'discriminator', value: schema.discriminator.propertyName });
@@ -35,17 +35,13 @@ function writeSchema(key, schema, model, target, prettierOpts) {
       mapProps(schema, $$name, imports, $$properties);
     }
   } else if (schema.allOf) {
-    const refs = schema.allOf.filter((a) => a.$ref);
-
-    if (refs.length > 1) {
-      console.warn(`WARNING: Multiple $ref-s found for ${key}, extending based on first entry!`);
-    }
-
-    if (refs.length > 0 && !$$extend) {
-      const toExtend = fileName(refs[0].$ref);
-      $$extend = toExtend;
-      imports.push({ ref: toExtend, fileName: toExtend });
-    }
+    schema.allOf
+      .filter((a) => a.$ref)
+      .map((a) => fileName(a.$ref))
+      .forEach((fn) => {
+        imports.push({ ref: fn, fileName: fn });
+        $$extend.push(fn);
+      });
 
     schema.allOf.filter((a) => !a.$ref).forEach((allOf) => {
       if (allOf.type === 'object') {

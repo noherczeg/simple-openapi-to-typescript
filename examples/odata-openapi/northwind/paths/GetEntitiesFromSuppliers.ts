@@ -65,8 +65,12 @@ export interface RequestSearchParams {
   $expand?: Set<ExpandEnum>;
 }
 
-export function createPath(): string {
-  return `/Suppliers`;
+/**
+ 
+ * @param {string} [baseUrl] If present, will be prepended to the URI. If missing, the result will be ensured to be a relative URL.
+ */
+export function createPath(baseUrl?: string): string {
+  return baseUrl ? `${baseUrl}/Suppliers` : `Suppliers`;
 }
 
 export const method: HttpMethods = HttpMethods.GET;

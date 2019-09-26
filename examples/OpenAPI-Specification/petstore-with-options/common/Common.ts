@@ -9,10 +9,10 @@ export interface ServerVariableObject {
 export interface ServerObject {
     url: string;
     description?: string;
-    variables?: Map<string, ServerVariableObject>;
+    variables?: Record<string, ServerVariableObject>;
 }
 
-export type HostNameMapper = (servers: ServerObject[]) => string;
+export type ServerMapper = (servers: ServerObject[]) => string;
 
 export const servers: ServerObject[] = [
     {
@@ -20,6 +20,6 @@ export const servers: ServerObject[] = [
     }
 ];
 
-export function createHostName(mapper: HostNameMapper): string {
+export function createBaseUrl(mapper: ServerMapper): string {
     return mapper(servers);
 }
