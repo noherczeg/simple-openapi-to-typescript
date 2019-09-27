@@ -22,5 +22,6 @@ export function createPath(pathParams: PathParams, baseUrl?: string): string {
 export const method: HttpMethods = HttpMethods.POST;
 
 export const headers: Record<string, string> = {
+  Accept: MediaTypes.APPLICATION_JSON,
   "Content-Type": MediaTypes.APPLICATION_FORM_URLENCODED
 };

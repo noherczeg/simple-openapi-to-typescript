@@ -1,6 +1,7 @@
 /* Generated source, do not modify! */
 
 import { HttpMethods } from "../constants/HttpMethods";
+import { MediaTypes } from "../constants/MediaTypes";
 
 export interface RequestSearchParams {
   limit?: number;
@@ -15,3 +16,7 @@ export function createPath(baseUrl?: string): string {
 }
 
 export const method: HttpMethods = HttpMethods.GET;
+
+export const headers: Record<string, string> = {
+  Accept: MediaTypes.APPLICATION_JSON
+};

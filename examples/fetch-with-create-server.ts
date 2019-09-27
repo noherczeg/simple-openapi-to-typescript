@@ -2,7 +2,6 @@ import { createPath, method, RequestBody, headers } from './odata-openapi/northw
 import { NorthwindModelEmployee } from './odata-openapi/northwind/components/schemas/NorthwindModelEmployee';
 import { Error } from './odata-openapi/northwind/components/responses/Error';
 import { createBaseUrl } from './odata-openapi/northwind/common/Common';
-import { MediaTypes } from './odata-openapi/northwind/constants/MediaTypes';
 
 const payload: RequestBody = {
   EmployeeID: 11,
@@ -15,8 +14,8 @@ const url = createPath({ TerritoryID: 'ABC' }, createBaseUrl((servers) => server
 fetch(url, {
   method,
   headers: {
-    'Accept': MediaTypes.APPLICATION_JSON,
     ...headers,
+    'X-Custom-Header': 'Yay, some value!',
   },
   body: JSON.stringify(payload),
 })

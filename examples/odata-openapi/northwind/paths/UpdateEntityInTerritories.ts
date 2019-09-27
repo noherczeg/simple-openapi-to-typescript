@@ -1,8 +1,8 @@
 /* Generated source, do not modify! */
 
 import { HttpMethods } from "../constants/HttpMethods";
-import { MediaTypes } from "../constants/MediaTypes";
 import { NorthwindModelTerritoryUpdate } from "../components/schemas/NorthwindModelTerritoryUpdate";
+import { MediaTypes } from "../constants/MediaTypes";
 
 export interface PathParams {
   TerritoryID: string;

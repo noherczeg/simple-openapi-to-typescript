@@ -1,6 +1,7 @@
 /* Generated source, do not modify! */
 
 import { HttpMethods } from "../constants/HttpMethods";
+import { MediaTypes } from "../constants/MediaTypes";
 
 export interface PathParams {
   dataset: string;
@@ -19,3 +20,7 @@ export function createPath(pathParams: PathParams, baseUrl?: string): string {
 }
 
 export const method: HttpMethods = HttpMethods.GET;
+
+export const headers: Record<string, string> = {
+  Accept: MediaTypes.APPLICATION_JSON
+};

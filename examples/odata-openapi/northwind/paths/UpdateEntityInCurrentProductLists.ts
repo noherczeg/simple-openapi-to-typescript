@@ -1,8 +1,8 @@
 /* Generated source, do not modify! */
 
 import { HttpMethods } from "../constants/HttpMethods";
-import { MediaTypes } from "../constants/MediaTypes";
 import { NorthwindModelCurrentProductListUpdate } from "../components/schemas/NorthwindModelCurrentProductListUpdate";
+import { MediaTypes } from "../constants/MediaTypes";
 
 export interface PathParams {
   ProductID: number;

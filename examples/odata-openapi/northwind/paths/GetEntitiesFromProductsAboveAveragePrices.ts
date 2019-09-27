@@ -1,6 +1,7 @@
 /* Generated source, do not modify! */
 
 import { HttpMethods } from "../constants/HttpMethods";
+import { MediaTypes } from "../constants/MediaTypes";
 
 /**
  * description: Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)
@@ -37,3 +38,7 @@ export function createPath(baseUrl?: string): string {
 }
 
 export const method: HttpMethods = HttpMethods.GET;
+
+export const headers: Record<string, string> = {
+  Accept: MediaTypes.APPLICATION_JSON
+};

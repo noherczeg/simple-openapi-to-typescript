@@ -37,8 +37,9 @@ export function createPath(${pathData.$$pathParams && pathData.$$pathParams.leng
 
 export const method: HttpMethods = HttpMethods.${pathData.$$method};
 
-${pathData.$$requestContentType ? `export const headers: Record<string, string> = {
-  'Content-Type': MediaTypes.${pathData.$$requestContentType},
+${pathData.$$requestContentType || pathData.$$requestAcceptType ? `export const headers: Record<string, string> = {
+  ${pathData.$$requestAcceptType ? `'Accept': MediaTypes.${pathData.$$requestAcceptType},` : ''}
+  ${pathData.$$requestContentType ? `'Content-Type': MediaTypes.${pathData.$$requestContentType},` : ''}
 };` : ''}
 
 ${pathData.$$requestBodyType ? `export type RequestBody = ${pathData.$$requestBodyType}` : ''}

@@ -1,8 +1,8 @@
 /* Generated source, do not modify! */
 
 import { HttpMethods } from "../constants/HttpMethods";
-import { MediaTypes } from "../constants/MediaTypes";
 import { NorthwindModelProductSalesFor1997Update } from "../components/schemas/NorthwindModelProductSalesFor1997Update";
+import { MediaTypes } from "../constants/MediaTypes";
 
 export interface PathParams {
   CategoryName: string;

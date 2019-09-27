@@ -1,8 +1,8 @@
 /* Generated source, do not modify! */
 
 import { HttpMethods } from "../constants/HttpMethods";
-import { MediaTypes } from "../constants/MediaTypes";
 import { NorthwindModelEmployeeCreate } from "../components/schemas/NorthwindModelEmployeeCreate";
+import { MediaTypes } from "../constants/MediaTypes";
 
 /**
  
@@ -15,6 +15,7 @@ export function createPath(baseUrl?: string): string {
 export const method: HttpMethods = HttpMethods.POST;
 
 export const headers: Record<string, string> = {
+  Accept: MediaTypes.APPLICATION_JSON,
   "Content-Type": MediaTypes.APPLICATION_JSON
 };
 

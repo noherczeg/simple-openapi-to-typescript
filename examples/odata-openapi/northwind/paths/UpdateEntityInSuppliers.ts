@@ -1,8 +1,8 @@
 /* Generated source, do not modify! */
 
 import { HttpMethods } from "../constants/HttpMethods";
-import { MediaTypes } from "../constants/MediaTypes";
 import { NorthwindModelSupplierUpdate } from "../components/schemas/NorthwindModelSupplierUpdate";
+import { MediaTypes } from "../constants/MediaTypes";
 
 export interface PathParams {
   SupplierID: number;

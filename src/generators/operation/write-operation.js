@@ -59,10 +59,7 @@ function writePath(key, method, pathData, path, model, target, prettierOpts) {
   const $$queryParameters = queryParams.map(paramMapper);
   const $$pathParams = pathParams.map(paramMapper);
   const $$enums = [...queryParams, ...pathParams].filter(enumFilter).map(enumMapper);
-
-  if ($$requestContentType) {
-    imports.push({ ref: 'MediaTypes', fileName: '../constants/MediaTypes' });
-  }
+  let $$requestAcceptType = null;
 
   if ($$requestBodyType) {
     imports.push({ ref: $$requestBodyType.name, fileName: `../components/schemas/${$$requestBodyType.name}` });
@@ -71,6 +68,15 @@ function writePath(key, method, pathData, path, model, target, prettierOpts) {
   }
 
   if (pathData.responses) {
+    const acceptType = Object.entries(pathData.responses).find(([code]) => {
+      const codeAsNumber = Number(code);
+      return Number.isInteger(codeAsNumber) && codeAsNumber >= 200 && codeAsNumber < 300;
+    });
+
+    if (acceptType && acceptType[1].content) {
+      $$requestAcceptType = contentTypeEnumMapper(acceptType[1].content);
+    }
+
     Object.values(pathData.responses)
       .filter((opDef) => opDef.content && mapSchemaInOperation(opDef.content))
       .map((opDef) => mapSchemaInOperation(opDef.content))
@@ -86,12 +92,17 @@ function writePath(key, method, pathData, path, model, target, prettierOpts) {
       });
   }
 
+  if ($$requestContentType || $$requestAcceptType) {
+    imports.push({ ref: 'MediaTypes', fileName: '../constants/MediaTypes' });
+  }
+
   $$consolidatedImports.push(...consolidateImports(imports, $$name, 'ref'));
 
   const data = operationTemplate({
     $$name,
     $$path,
     $$method,
+    $$requestAcceptType,
     $$requestContentType,
     $$requestBodyType: $$requestBodyType && $$requestBodyType.name,
     $$queryParameters,

@@ -1,8 +1,8 @@
 /* Generated source, do not modify! */
 
 import { HttpMethods } from "../constants/HttpMethods";
-import { MediaTypes } from "../constants/MediaTypes";
 import { NorthwindModelOrderDetailUpdate } from "../components/schemas/NorthwindModelOrderDetailUpdate";
+import { MediaTypes } from "../constants/MediaTypes";
 
 export interface PathParams {
   OrderID: number;
