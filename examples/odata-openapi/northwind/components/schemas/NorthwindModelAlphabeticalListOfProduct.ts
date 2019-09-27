@@ -4,53 +4,53 @@ export interface NorthwindModelAlphabeticalListOfProduct {
   /**
    * format: int32
    */
-  ProductID?: number;
+  readonly ProductID?: number;
 
   /**
    * maxLength: 40
    */
-  ProductName?: string;
+  readonly ProductName?: string;
 
   /**
    * format: int32
    */
-  SupplierID?: number;
+  readonly SupplierID?: number;
 
   /**
    * format: int32
    */
-  CategoryID?: number;
+  readonly CategoryID?: number;
 
   /**
    * maxLength: 20
    */
-  QuantityPerUnit?: string;
+  readonly QuantityPerUnit?: string;
 
   /**
    * format: decimal
    * multipleOf: 0.0001
    */
-  UnitPrice?: number | string;
+  readonly UnitPrice?: number | string;
 
   /**
    * format: int16
    */
-  UnitsInStock?: number;
+  readonly UnitsInStock?: number;
 
   /**
    * format: int16
    */
-  UnitsOnOrder?: number;
+  readonly UnitsOnOrder?: number;
 
   /**
    * format: int16
    */
-  ReorderLevel?: number;
+  readonly ReorderLevel?: number;
 
-  Discontinued?: boolean;
+  readonly Discontinued?: boolean;
 
   /**
    * maxLength: 15
    */
-  CategoryName?: string;
+  readonly CategoryName?: string;
 }

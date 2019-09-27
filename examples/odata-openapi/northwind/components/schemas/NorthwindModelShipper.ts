@@ -6,17 +6,17 @@ export interface NorthwindModelShipper {
   /**
    * format: int32
    */
-  ShipperID?: number;
+  readonly ShipperID?: number;
 
   /**
    * maxLength: 40
    */
-  CompanyName?: string;
+  readonly CompanyName?: string;
 
   /**
    * maxLength: 24
    */
-  Phone?: string;
+  readonly Phone?: string;
 
-  Orders?: Array<NorthwindModelOrder>;
+  readonly Orders?: ReadonlyArray<NorthwindModelOrder>;
 }

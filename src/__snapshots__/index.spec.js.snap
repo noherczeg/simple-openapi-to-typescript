@@ -4,9 +4,9 @@ exports[`openapi-web-gen OpenAPI-Specification/examples/v3.0/link-example.yaml s
 "/* Generated source, do not modify! */
 
 export interface User {
-  username?: string;
+  readonly username?: string;
 
-  uuid?: string;
+  readonly uuid?: string;
 }
 "
 `;
@@ -15,9 +15,9 @@ exports[`openapi-web-gen OpenAPI-Specification/examples/v3.0/link-example.yaml s
 "/* Generated source, do not modify! */
 
 export interface User {
-  username?: string;
+  readonly username?: string;
 
-  uuid?: string;
+  readonly uuid?: string;
 }
 "
 `;
@@ -26,9 +26,9 @@ exports[`openapi-web-gen OpenAPI-Specification/examples/v3.0/link-example.yaml s
 "/* Generated source, do not modify! */
 
 export interface User {
-  username?: string;
+  readonly username?: string;
 
-  uuid?: string;
+  readonly uuid?: string;
 }
 "
 `;
@@ -69,9 +69,9 @@ export interface Error {
   /**
    * format: int32
    */
-  code: number;
+  readonly code: number;
 
-  message: string;
+  readonly message: string;
 }
 "
 `;
@@ -83,11 +83,11 @@ export interface Pet {
   /**
    * format: int64
    */
-  id: number;
+  readonly id: number;
 
-  name: string;
+  readonly name: string;
 
-  tag?: string;
+  readonly tag?: string;
 }
 "
 `;
@@ -137,9 +137,9 @@ export interface Error {
   /**
    * format: int32
    */
-  code: number;
+  readonly code: number;
 
-  message: string;
+  readonly message: string;
 }
 "
 `;
@@ -164,7 +164,7 @@ export interface Pet extends NewPet {
   /**
    * format: int64
    */
-  id: number;
+  readonly id: number;
 }
 "
 `;
@@ -235,9 +235,9 @@ exports[`openapi-web-gen OpenAPI-Specification/examples/v3.0/uspto.yaml should g
 "/* Generated source, do not modify! */
 
 export interface DataSetList {
-  total?: number;
+  readonly total?: number;
 
-  apis?: Array<any>;
+  readonly apis?: ReadonlyArray<any>;
 }
 "
 `;
@@ -309,15 +309,6 @@ export interface Error {
 "
 `;
 
-exports[`openapi-web-gen odata-openapi/Northwind.openapi3.json should generate components/schemas/ Error.ts 1`] = `
-"/* Generated source, do not modify! */
-
-export interface Error {
-  error: any;
-}
-"
-`;
-
 exports[`openapi-web-gen odata-openapi/Northwind.openapi3.json should generate components/schemas/ NorthwindModelAlphabeticalListOfProduct.ts 1`] = `
 "/* Generated source, do not modify! */
 
@@ -325,55 +316,55 @@ export interface NorthwindModelAlphabeticalListOfProduct {
   /**
    * format: int32
    */
-  ProductID?: number;
+  readonly ProductID?: number;
 
   /**
    * maxLength: 40
    */
-  ProductName?: string;
+  readonly ProductName?: string;
 
   /**
    * format: int32
    */
-  SupplierID?: number;
+  readonly SupplierID?: number;
 
   /**
    * format: int32
    */
-  CategoryID?: number;
+  readonly CategoryID?: number;
 
   /**
    * maxLength: 20
    */
-  QuantityPerUnit?: string;
+  readonly QuantityPerUnit?: string;
 
   /**
    * format: decimal
    * multipleOf: 0.0001
    */
-  UnitPrice?: number | string;
+  readonly UnitPrice?: number | string;
 
   /**
    * format: int16
    */
-  UnitsInStock?: number;
+  readonly UnitsInStock?: number;
 
   /**
    * format: int16
    */
-  UnitsOnOrder?: number;
+  readonly UnitsOnOrder?: number;
 
   /**
    * format: int16
    */
-  ReorderLevel?: number;
+  readonly ReorderLevel?: number;
 
-  Discontinued?: boolean;
+  readonly Discontinued?: boolean;
 
   /**
    * maxLength: 15
    */
-  CategoryName?: string;
+  readonly CategoryName?: string;
 }
 "
 `;
@@ -387,21 +378,21 @@ export interface NorthwindModelCategory {
   /**
    * format: int32
    */
-  CategoryID?: number;
+  readonly CategoryID?: number;
 
   /**
    * maxLength: 15
    */
-  CategoryName?: string;
+  readonly CategoryName?: string;
 
-  Description?: string;
+  readonly Description?: string;
 
   /**
    * format: base64url
    */
-  Picture?: string;
+  readonly Picture?: string;
 
-  Products?: Array<NorthwindModelProduct>;
+  readonly Products?: ReadonlyArray<NorthwindModelProduct>;
 }
 "
 `;
@@ -433,61 +424,63 @@ export interface NorthwindModelCustomer {
   /**
    * maxLength: 5
    */
-  CustomerID?: string;
+  readonly CustomerID?: string;
 
   /**
    * maxLength: 40
    */
-  CompanyName?: string;
+  readonly CompanyName?: string;
 
   /**
    * maxLength: 30
    */
-  ContactName?: string;
+  readonly ContactName?: string;
 
   /**
    * maxLength: 30
    */
-  ContactTitle?: string;
+  readonly ContactTitle?: string;
 
   /**
    * maxLength: 60
    */
-  Address?: string;
+  readonly Address?: string;
 
   /**
    * maxLength: 15
    */
-  City?: string;
+  readonly City?: string;
 
   /**
    * maxLength: 15
    */
-  Region?: string;
+  readonly Region?: string;
 
   /**
    * maxLength: 10
    */
-  PostalCode?: string;
+  readonly PostalCode?: string;
 
   /**
    * maxLength: 15
    */
-  Country?: string;
+  readonly Country?: string;
 
   /**
    * maxLength: 24
    */
-  Phone?: string;
+  readonly Phone?: string;
 
   /**
    * maxLength: 24
    */
-  Fax?: string;
+  readonly Fax?: string;
 
-  Orders?: Array<NorthwindModelOrder>;
+  readonly Orders?: ReadonlyArray<NorthwindModelOrder>;
 
-  CustomerDemographics?: Array<NorthwindModelCustomerDemographic>;
+  readonly CustomerDemographics?: ReadonlyArray<
+    NorthwindModelCustomerDemographic
+  >;
 }
 "
 `;
@@ -502,97 +495,97 @@ export interface NorthwindModelEmployee {
   /**
    * format: int32
    */
-  EmployeeID?: number;
+  readonly EmployeeID?: number;
 
   /**
    * maxLength: 20
    */
-  LastName?: string;
+  readonly LastName?: string;
 
   /**
    * maxLength: 10
    */
-  FirstName?: string;
+  readonly FirstName?: string;
 
   /**
    * maxLength: 30
    */
-  Title?: string;
+  readonly Title?: string;
 
   /**
    * maxLength: 25
    */
-  TitleOfCourtesy?: string;
+  readonly TitleOfCourtesy?: string;
 
   /**
    * format: date-time
    */
-  BirthDate?: string;
+  readonly BirthDate?: string;
 
   /**
    * format: date-time
    */
-  HireDate?: string;
+  readonly HireDate?: string;
 
   /**
    * maxLength: 60
    */
-  Address?: string;
+  readonly Address?: string;
 
   /**
    * maxLength: 15
    */
-  City?: string;
+  readonly City?: string;
 
   /**
    * maxLength: 15
    */
-  Region?: string;
+  readonly Region?: string;
 
   /**
    * maxLength: 10
    */
-  PostalCode?: string;
+  readonly PostalCode?: string;
 
   /**
    * maxLength: 15
    */
-  Country?: string;
+  readonly Country?: string;
 
   /**
    * maxLength: 24
    */
-  HomePhone?: string;
+  readonly HomePhone?: string;
 
   /**
    * maxLength: 4
    */
-  Extension?: string;
+  readonly Extension?: string;
 
   /**
    * format: base64url
    */
-  Photo?: string;
+  readonly Photo?: string;
 
-  Notes?: string;
+  readonly Notes?: string;
 
   /**
    * format: int32
    */
-  ReportsTo?: number;
+  readonly ReportsTo?: number;
 
   /**
    * maxLength: 255
    */
-  PhotoPath?: string;
+  readonly PhotoPath?: string;
 
-  Employees1?: Array<NorthwindModelEmployee>;
+  readonly Employees1?: ReadonlyArray<NorthwindModelEmployee>;
 
-  Employee1?: NorthwindModelEmployee;
+  readonly Employee1?: NorthwindModelEmployee;
 
-  Orders?: Array<NorthwindModelOrder>;
+  readonly Orders?: ReadonlyArray<NorthwindModelOrder>;
 
-  Territories?: Array<NorthwindModelTerritory>;
+  readonly Territories?: ReadonlyArray<NorthwindModelTerritory>;
 }
 "
 `;
@@ -607,32 +600,32 @@ export interface NorthwindModelOrderDetail {
   /**
    * format: int32
    */
-  OrderID?: number;
+  readonly OrderID?: number;
 
   /**
    * format: int32
    */
-  ProductID?: number;
+  readonly ProductID?: number;
 
   /**
    * format: decimal
    * multipleOf: 0.0001
    */
-  UnitPrice?: number | string;
+  readonly UnitPrice?: number | string;
 
   /**
    * format: int16
    */
-  Quantity?: number;
+  readonly Quantity?: number;
 
   /**
    * format: float
    */
-  Discount?: number | string;
+  readonly Discount?: number | string;
 
-  Order?: NorthwindModelOrder;
+  readonly Order?: NorthwindModelOrder;
 
-  Product?: NorthwindModelProduct;
+  readonly Product?: NorthwindModelProduct;
 }
 "
 `;

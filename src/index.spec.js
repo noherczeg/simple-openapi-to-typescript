@@ -39,10 +39,6 @@ describe('openapi-web-gen', () => {
     });
 
     describe('components/schemas/', () => {
-      it('Error.ts', () => {
-        expect(schemaOutputFor(odataOpenApiPath, 'Error.ts')).toMatchSnapshot();
-      });
-
       it('NorthwindModelAlphabeticalListOfProduct.ts', () => {
         expect(schemaOutputFor(odataOpenApiPath, 'NorthwindModelAlphabeticalListOfProduct.ts')).toMatchSnapshot();
       });

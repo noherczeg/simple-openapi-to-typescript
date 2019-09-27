@@ -1,13 +1,13 @@
 const { typeMapper, docsMapper } = require('../../utils/mapping');
 const { fileName } = require('../../utils/naming');
 
-const propTypesMapper = (...items) => {
+const propTypesMapper = (readonly, ...items) => {
   const types = [];
   const imports = [];
   items.forEach((a) => {
     let name = '';
     if (a.type) {
-      name = typeMapper(a.type);
+      name = typeMapper(a.type, readonly);
     } else if (a.$ref) {
       name = fileName(a.$ref);
       imports.push({ ref: name, fileName: name });
@@ -18,7 +18,7 @@ const propTypesMapper = (...items) => {
   return { types, imports };
 };
 
-const propMapper = (name, prop, schema, $$name) => {
+const propMapper = (name, prop, schema, $$name, readonly) => {
   const types = [];
   const imports = [];
   const required = prop.required || (schema.required || []).includes(name);
@@ -36,7 +36,11 @@ const propMapper = (name, prop, schema, $$name) => {
     }
   }
 
-  const typeData = propTypesMapper(prop, ...(prop.anyOf || prop.allOf || prop.oneOf || []));
+  const typeData = propTypesMapper(
+    readonly,
+    prop,
+    ...(prop.anyOf || prop.allOf || prop.oneOf || []),
+  );
   types.push(...typeData.types);
   imports.push(...typeData.imports);
 

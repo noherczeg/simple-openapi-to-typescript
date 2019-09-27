@@ -1,7 +1,7 @@
 /* Generated source, do not modify! */
 
 export interface DataSetList {
-  total?: number;
+  readonly total?: number;
 
-  apis?: Array<any>;
+  readonly apis?: ReadonlyArray<any>;
 }

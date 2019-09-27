@@ -4,7 +4,7 @@ export interface Error {
   /**
    * format: int32
    */
-  code: number;
+  readonly code: number;
 
-  message: string;
+  readonly message: string;
 }

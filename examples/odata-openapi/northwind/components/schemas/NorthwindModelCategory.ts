@@ -6,19 +6,19 @@ export interface NorthwindModelCategory {
   /**
    * format: int32
    */
-  CategoryID?: number;
+  readonly CategoryID?: number;
 
   /**
    * maxLength: 15
    */
-  CategoryName?: string;
+  readonly CategoryName?: string;
 
-  Description?: string;
+  readonly Description?: string;
 
   /**
    * format: base64url
    */
-  Picture?: string;
+  readonly Picture?: string;
 
-  Products?: Array<NorthwindModelProduct>;
+  readonly Products?: ReadonlyArray<NorthwindModelProduct>;
 }

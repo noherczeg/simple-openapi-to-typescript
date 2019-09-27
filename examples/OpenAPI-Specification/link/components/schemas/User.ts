@@ -1,7 +1,7 @@
 /* Generated source, do not modify! */
 
 export interface User {
-  username?: string;
+  readonly username?: string;
 
-  uuid?: string;
+  readonly uuid?: string;
 }

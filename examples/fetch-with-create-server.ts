@@ -1,6 +1,6 @@
 import { createPath, method, RequestBody, headers } from './odata-openapi/northwind/paths/AddNewEntityToRelatedEmployees';
 import { NorthwindModelEmployee } from './odata-openapi/northwind/components/schemas/NorthwindModelEmployee';
-import { Error } from './odata-openapi/northwind/components/schemas/Error';
+import { Error } from './odata-openapi/northwind/components/responses/Error';
 import { createBaseUrl } from './odata-openapi/northwind/common/Common';
 import { MediaTypes } from './odata-openapi/northwind/constants/MediaTypes';
 

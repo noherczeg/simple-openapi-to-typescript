@@ -4,11 +4,11 @@ import { Repository } from "./Repository";
 import { User } from "./User";
 
 export interface Pullrequest {
-  id?: number;
+  readonly id?: number;
 
-  title?: string;
+  readonly title?: string;
 
-  repository?: Repository;
+  readonly repository?: Repository;
 
-  author?: User;
+  readonly author?: User;
 }

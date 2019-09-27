@@ -4,20 +4,20 @@ export interface NorthwindModelCustomerAndSuppliersByCity {
   /**
    * maxLength: 15
    */
-  City?: string;
+  readonly City?: string;
 
   /**
    * maxLength: 40
    */
-  CompanyName?: string;
+  readonly CompanyName?: string;
 
   /**
    * maxLength: 30
    */
-  ContactName?: string;
+  readonly ContactName?: string;
 
   /**
    * maxLength: 9
    */
-  Relationship?: string;
+  readonly Relationship?: string;
 }

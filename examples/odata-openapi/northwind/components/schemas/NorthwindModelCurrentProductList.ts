@@ -4,10 +4,10 @@ export interface NorthwindModelCurrentProductList {
   /**
    * format: int32
    */
-  ProductID?: number;
+  readonly ProductID?: number;
 
   /**
    * maxLength: 40
    */
-  ProductName?: string;
+  readonly ProductName?: string;
 }

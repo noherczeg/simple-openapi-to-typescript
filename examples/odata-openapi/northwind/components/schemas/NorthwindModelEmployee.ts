@@ -7,95 +7,95 @@ export interface NorthwindModelEmployee {
   /**
    * format: int32
    */
-  EmployeeID?: number;
+  readonly EmployeeID?: number;
 
   /**
    * maxLength: 20
    */
-  LastName?: string;
+  readonly LastName?: string;
 
   /**
    * maxLength: 10
    */
-  FirstName?: string;
+  readonly FirstName?: string;
 
   /**
    * maxLength: 30
    */
-  Title?: string;
+  readonly Title?: string;
 
   /**
    * maxLength: 25
    */
-  TitleOfCourtesy?: string;
+  readonly TitleOfCourtesy?: string;
 
   /**
    * format: date-time
    */
-  BirthDate?: string;
+  readonly BirthDate?: string;
 
   /**
    * format: date-time
    */
-  HireDate?: string;
+  readonly HireDate?: string;
 
   /**
    * maxLength: 60
    */
-  Address?: string;
+  readonly Address?: string;
 
   /**
    * maxLength: 15
    */
-  City?: string;
+  readonly City?: string;
 
   /**
    * maxLength: 15
    */
-  Region?: string;
+  readonly Region?: string;
 
   /**
    * maxLength: 10
    */
-  PostalCode?: string;
+  readonly PostalCode?: string;
 
   /**
    * maxLength: 15
    */
-  Country?: string;
+  readonly Country?: string;
 
   /**
    * maxLength: 24
    */
-  HomePhone?: string;
+  readonly HomePhone?: string;
 
   /**
    * maxLength: 4
    */
-  Extension?: string;
+  readonly Extension?: string;
 
   /**
    * format: base64url
    */
-  Photo?: string;
+  readonly Photo?: string;
 
-  Notes?: string;
+  readonly Notes?: string;
 
   /**
    * format: int32
    */
-  ReportsTo?: number;
+  readonly ReportsTo?: number;
 
   /**
    * maxLength: 255
    */
-  PhotoPath?: string;
+  readonly PhotoPath?: string;
 
-  Employees1?: Array<NorthwindModelEmployee>;
+  readonly Employees1?: ReadonlyArray<NorthwindModelEmployee>;
 
-  Employee1?: NorthwindModelEmployee;
+  readonly Employee1?: NorthwindModelEmployee;
 
-  Orders?: Array<NorthwindModelOrder>;
+  readonly Orders?: ReadonlyArray<NorthwindModelOrder>;
 
-  Territories?: Array<NorthwindModelTerritory>;
+  readonly Territories?: ReadonlyArray<NorthwindModelTerritory>;
 }

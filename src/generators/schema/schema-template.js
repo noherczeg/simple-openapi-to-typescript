@@ -15,7 +15,7 @@ ${schema.$$docs && schema.$$docs.length ? `
       /**
        ${prop.docs.map((d) => ` * ${d.name}: ${d.value}`).join(EOL)}
        */
-    ` : ''}${prop.name} ${prop.required ? '' : '?'}: ${prop.types.map((type) => `
+    ` : ''}${schema.readonly ? 'readonly ' : ''}${prop.name} ${prop.required ? '' : '?'}: ${prop.types.map((type) => `
       ${type} ${prop.arrayTypeName ? `<${prop.arrayTypeName}>` : ''}
     `).join(' | ')}
   `).join('')}

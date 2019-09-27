@@ -6,9 +6,9 @@ export interface NorthwindModelCustomerDemographic {
   /**
    * maxLength: 10
    */
-  CustomerTypeID?: string;
+  readonly CustomerTypeID?: string;
 
-  CustomerDesc?: string;
+  readonly CustomerDesc?: string;
 
-  Customers?: Array<NorthwindModelCustomer>;
+  readonly Customers?: ReadonlyArray<NorthwindModelCustomer>;
 }

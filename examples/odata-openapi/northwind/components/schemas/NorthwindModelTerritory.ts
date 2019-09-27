@@ -7,19 +7,19 @@ export interface NorthwindModelTerritory {
   /**
    * maxLength: 20
    */
-  TerritoryID?: string;
+  readonly TerritoryID?: string;
 
   /**
    * maxLength: 50
    */
-  TerritoryDescription?: string;
+  readonly TerritoryDescription?: string;
 
   /**
    * format: int32
    */
-  RegionID?: number;
+  readonly RegionID?: number;
 
-  Region?: NorthwindModelRegion;
+  readonly Region?: NorthwindModelRegion;
 
-  Employees?: Array<NorthwindModelEmployee>;
+  readonly Employees?: ReadonlyArray<NorthwindModelEmployee>;
 }

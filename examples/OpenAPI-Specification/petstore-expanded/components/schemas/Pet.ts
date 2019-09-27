@@ -6,5 +6,5 @@ export interface Pet extends NewPet {
   /**
    * format: int64
    */
-  id: number;
+  readonly id: number;
 }

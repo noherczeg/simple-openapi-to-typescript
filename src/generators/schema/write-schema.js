@@ -5,16 +5,16 @@ const { consolidateImports } = require('../../utils/imports');
 const { propMapper } = require('./utils');
 const schemaTemplate = require('./schema-template');
 
-function mapProps(input, $$name, imports, $$properties) {
+function mapProps(input, $$name, imports, $$properties, readonly) {
   Object.entries(input.properties || {}).forEach(([name, prop]) => {
-    const entry = propMapper(name, prop, input, $$name);
+    const entry = propMapper(name, prop, input, $$name, readonly);
 
     imports.push(...entry.imports);
     $$properties.push(entry.data);
   });
 }
 
-function writeSchema(key, schema, model, target, prettierOpts) {
+function writeSchema(key, schema, model, target, prettierOpts, readonly) {
   const imports = [];
   const $$name = pureName(key);
   const $$consolidatedImports = [];
@@ -32,7 +32,7 @@ function writeSchema(key, schema, model, target, prettierOpts) {
       const baseName = fileName(schema.items.$ref);
       imports.push({ ref: baseName, fileName: baseName });
     } else if (schema.type === 'object') {
-      mapProps(schema, $$name, imports, $$properties);
+      mapProps(schema, $$name, imports, $$properties, readonly);
     }
   } else if (schema.allOf) {
     schema.allOf
@@ -45,7 +45,7 @@ function writeSchema(key, schema, model, target, prettierOpts) {
 
     schema.allOf.filter((a) => !a.$ref).forEach((allOf) => {
       if (allOf.type === 'object') {
-        mapProps(allOf, $$name, imports, $$properties);
+        mapProps(allOf, $$name, imports, $$properties, readonly);
       }
     });
   }
@@ -59,6 +59,7 @@ function writeSchema(key, schema, model, target, prettierOpts) {
     $$consolidatedImports,
     $$docs,
     $$properties,
+    readonly,
   });
   const filePath = `${target}/components/schemas/${$$name}.ts`;
   const formatted = prettier.format(data, prettierOpts);

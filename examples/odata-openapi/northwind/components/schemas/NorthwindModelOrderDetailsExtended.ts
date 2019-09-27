@@ -4,37 +4,37 @@ export interface NorthwindModelOrderDetailsExtended {
   /**
    * format: int32
    */
-  OrderID?: number;
+  readonly OrderID?: number;
 
   /**
    * format: int32
    */
-  ProductID?: number;
+  readonly ProductID?: number;
 
   /**
    * maxLength: 40
    */
-  ProductName?: string;
+  readonly ProductName?: string;
 
   /**
    * format: decimal
    * multipleOf: 0.0001
    */
-  UnitPrice?: number | string;
+  readonly UnitPrice?: number | string;
 
   /**
    * format: int16
    */
-  Quantity?: number;
+  readonly Quantity?: number;
 
   /**
    * format: float
    */
-  Discount?: number | string;
+  readonly Discount?: number | string;
 
   /**
    * format: decimal
    * multipleOf: 0.0001
    */
-  ExtendedPrice?: number | string;
+  readonly ExtendedPrice?: number | string;
 }

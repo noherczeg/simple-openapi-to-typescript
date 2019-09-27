@@ -7,30 +7,30 @@ export interface NorthwindModelOrderDetail {
   /**
    * format: int32
    */
-  OrderID?: number;
+  readonly OrderID?: number;
 
   /**
    * format: int32
    */
-  ProductID?: number;
+  readonly ProductID?: number;
 
   /**
    * format: decimal
    * multipleOf: 0.0001
    */
-  UnitPrice?: number | string;
+  readonly UnitPrice?: number | string;
 
   /**
    * format: int16
    */
-  Quantity?: number;
+  readonly Quantity?: number;
 
   /**
    * format: float
    */
-  Discount?: number | string;
+  readonly Discount?: number | string;
 
-  Order?: NorthwindModelOrder;
+  readonly Order?: NorthwindModelOrder;
 
-  Product?: NorthwindModelProduct;
+  readonly Product?: NorthwindModelProduct;
 }

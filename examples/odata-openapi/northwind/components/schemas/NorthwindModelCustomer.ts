@@ -7,59 +7,61 @@ export interface NorthwindModelCustomer {
   /**
    * maxLength: 5
    */
-  CustomerID?: string;
+  readonly CustomerID?: string;
 
   /**
    * maxLength: 40
    */
-  CompanyName?: string;
+  readonly CompanyName?: string;
 
   /**
    * maxLength: 30
    */
-  ContactName?: string;
+  readonly ContactName?: string;
 
   /**
    * maxLength: 30
    */
-  ContactTitle?: string;
+  readonly ContactTitle?: string;
 
   /**
    * maxLength: 60
    */
-  Address?: string;
+  readonly Address?: string;
 
   /**
    * maxLength: 15
    */
-  City?: string;
+  readonly City?: string;
 
   /**
    * maxLength: 15
    */
-  Region?: string;
+  readonly Region?: string;
 
   /**
    * maxLength: 10
    */
-  PostalCode?: string;
+  readonly PostalCode?: string;
 
   /**
    * maxLength: 15
    */
-  Country?: string;
+  readonly Country?: string;
 
   /**
    * maxLength: 24
    */
-  Phone?: string;
+  readonly Phone?: string;
 
   /**
    * maxLength: 24
    */
-  Fax?: string;
+  readonly Fax?: string;
 
-  Orders?: Array<NorthwindModelOrder>;
+  readonly Orders?: ReadonlyArray<NorthwindModelOrder>;
 
-  CustomerDemographics?: Array<NorthwindModelCustomerDemographic>;
+  readonly CustomerDemographics?: ReadonlyArray<
+    NorthwindModelCustomerDemographic
+  >;
 }

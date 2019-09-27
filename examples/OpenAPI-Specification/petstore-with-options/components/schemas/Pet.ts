@@ -4,9 +4,9 @@ export interface Pet {
     /**
      * format: int64
      */
-    id: number;
+    readonly id: number;
 
-    name: string;
+    readonly name: string;
 
-    tag?: string;
+    readonly tag?: string;
 }

@@ -3,7 +3,7 @@
 import { User } from "./User";
 
 export interface Repository {
-  slug?: string;
+  readonly slug?: string;
 
-  owner?: User;
+  readonly owner?: User;
 }

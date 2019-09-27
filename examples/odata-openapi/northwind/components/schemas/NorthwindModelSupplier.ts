@@ -6,59 +6,59 @@ export interface NorthwindModelSupplier {
   /**
    * format: int32
    */
-  SupplierID?: number;
+  readonly SupplierID?: number;
 
   /**
    * maxLength: 40
    */
-  CompanyName?: string;
+  readonly CompanyName?: string;
 
   /**
    * maxLength: 30
    */
-  ContactName?: string;
+  readonly ContactName?: string;
 
   /**
    * maxLength: 30
    */
-  ContactTitle?: string;
+  readonly ContactTitle?: string;
 
   /**
    * maxLength: 60
    */
-  Address?: string;
+  readonly Address?: string;
 
   /**
    * maxLength: 15
    */
-  City?: string;
+  readonly City?: string;
 
   /**
    * maxLength: 15
    */
-  Region?: string;
+  readonly Region?: string;
 
   /**
    * maxLength: 10
    */
-  PostalCode?: string;
+  readonly PostalCode?: string;
 
   /**
    * maxLength: 15
    */
-  Country?: string;
+  readonly Country?: string;
 
   /**
    * maxLength: 24
    */
-  Phone?: string;
+  readonly Phone?: string;
 
   /**
    * maxLength: 24
    */
-  Fax?: string;
+  readonly Fax?: string;
 
-  HomePage?: string;
+  readonly HomePage?: string;
 
-  Products?: Array<NorthwindModelProduct>;
+  readonly Products?: ReadonlyArray<NorthwindModelProduct>;
 }

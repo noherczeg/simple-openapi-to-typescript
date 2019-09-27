@@ -4,11 +4,11 @@ export interface NorthwindModelOrderSubtotal {
   /**
    * format: int32
    */
-  OrderID?: number;
+  readonly OrderID?: number;
 
   /**
    * format: decimal
    * multipleOf: 0.0001
    */
-  Subtotal?: number | string;
+  readonly Subtotal?: number | string;
 }

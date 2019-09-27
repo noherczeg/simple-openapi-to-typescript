@@ -27,10 +27,10 @@ const docsMapper = (host, ...itemNames) => {
   return docs;
 };
 
-function typeMapper(type) {
+function typeMapper(type, readonly) {
   switch (type) {
     case 'array':
-      return 'Array';
+      return readonly ? 'ReadonlyArray' : 'Array';
     case 'object':
       return 'any';
     case 'integer':
@@ -40,25 +40,25 @@ function typeMapper(type) {
   }
 }
 
-function subTypeMapper(param) {
+function subTypeMapper(param, readonly) {
   if (param.schema.items) {
     if (param.schema.items.enum) {
       return enumName(param.name);
     }
 
-    return typeMapper(param.schema.items.type);
+    return typeMapper(param.schema.items.type, readonly);
   }
 
   return null;
 }
 
-function paramMapper(param) {
+function paramMapper(param, readonly) {
   return {
     name: param.name,
     style: param.style,
     required: param.required,
-    type: isUniqueEnum(param) ? 'Set' : typeMapper(param.schema.type),
-    subType: subTypeMapper(param),
+    type: isUniqueEnum(param) ? 'Set' : typeMapper(param.schema.type, readonly),
+    subType: subTypeMapper(param, readonly),
   };
 }
 
@@ -66,9 +66,9 @@ function enumFilter(param) {
   return param.schema.items && param.schema.items.enum;
 }
 
-function enumMapper(param) {
+function enumMapper(param, readonly) {
   return {
-    name: subTypeMapper(param),
+    name: subTypeMapper(param, readonly),
     docs: docsMapper(param, 'description'),
     items: param.schema.items.enum.map((e) => ({
       key: convertEnumName(e),

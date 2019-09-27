@@ -4,11 +4,11 @@ export interface NorthwindModelCategorySalesFor1997 {
   /**
    * maxLength: 15
    */
-  CategoryName?: string;
+  readonly CategoryName?: string;
 
   /**
    * format: decimal
    * multipleOf: 0.0001
    */
-  CategorySales?: number | string;
+  readonly CategorySales?: number | string;
 }

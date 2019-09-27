@@ -6,12 +6,12 @@ export interface NorthwindModelRegion {
   /**
    * format: int32
    */
-  RegionID?: number;
+  readonly RegionID?: number;
 
   /**
    * maxLength: 50
    */
-  RegionDescription?: string;
+  readonly RegionDescription?: string;
 
-  Territories?: Array<NorthwindModelTerritory>;
+  readonly Territories?: ReadonlyArray<NorthwindModelTerritory>;
 }

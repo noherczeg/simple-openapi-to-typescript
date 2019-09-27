@@ -4,22 +4,22 @@ export interface NorthwindModelProductsByCategory {
   /**
    * maxLength: 15
    */
-  CategoryName?: string;
+  readonly CategoryName?: string;
 
   /**
    * maxLength: 40
    */
-  ProductName?: string;
+  readonly ProductName?: string;
 
   /**
    * maxLength: 20
    */
-  QuantityPerUnit?: string;
+  readonly QuantityPerUnit?: string;
 
   /**
    * format: int16
    */
-  UnitsInStock?: number;
+  readonly UnitsInStock?: number;
 
-  Discontinued?: boolean;
+  readonly Discontinued?: boolean;
 }

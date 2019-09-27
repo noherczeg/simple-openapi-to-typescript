@@ -4,101 +4,101 @@ export interface NorthwindModelOrdersQry {
   /**
    * format: int32
    */
-  OrderID?: number;
+  readonly OrderID?: number;
 
   /**
    * maxLength: 5
    */
-  CustomerID?: string;
+  readonly CustomerID?: string;
 
   /**
    * format: int32
    */
-  EmployeeID?: number;
+  readonly EmployeeID?: number;
 
   /**
    * format: date-time
    */
-  OrderDate?: string;
+  readonly OrderDate?: string;
 
   /**
    * format: date-time
    */
-  RequiredDate?: string;
+  readonly RequiredDate?: string;
 
   /**
    * format: date-time
    */
-  ShippedDate?: string;
+  readonly ShippedDate?: string;
 
   /**
    * format: int32
    */
-  ShipVia?: number;
+  readonly ShipVia?: number;
 
   /**
    * format: decimal
    * multipleOf: 0.0001
    */
-  Freight?: number | string;
+  readonly Freight?: number | string;
 
   /**
    * maxLength: 40
    */
-  ShipName?: string;
+  readonly ShipName?: string;
 
   /**
    * maxLength: 60
    */
-  ShipAddress?: string;
+  readonly ShipAddress?: string;
 
   /**
    * maxLength: 15
    */
-  ShipCity?: string;
+  readonly ShipCity?: string;
 
   /**
    * maxLength: 15
    */
-  ShipRegion?: string;
+  readonly ShipRegion?: string;
 
   /**
    * maxLength: 10
    */
-  ShipPostalCode?: string;
+  readonly ShipPostalCode?: string;
 
   /**
    * maxLength: 15
    */
-  ShipCountry?: string;
+  readonly ShipCountry?: string;
 
   /**
    * maxLength: 40
    */
-  CompanyName?: string;
+  readonly CompanyName?: string;
 
   /**
    * maxLength: 60
    */
-  Address?: string;
+  readonly Address?: string;
 
   /**
    * maxLength: 15
    */
-  City?: string;
+  readonly City?: string;
 
   /**
    * maxLength: 15
    */
-  Region?: string;
+  readonly Region?: string;
 
   /**
    * maxLength: 10
    */
-  PostalCode?: string;
+  readonly PostalCode?: string;
 
   /**
    * maxLength: 15
    */
-  Country?: string;
+  readonly Country?: string;
 }

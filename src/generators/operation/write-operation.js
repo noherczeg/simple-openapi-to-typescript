@@ -9,17 +9,32 @@ const {
   contentTypeEnumMapper,
 } = require('../../utils/mapping');
 const operationTemplate = require('./operation-template');
+const { writeSchema } = require('../schema/write-schema');
+
+let schemaRefCache = [];
+
+function clearSchemaRefCache() {
+  schemaRefCache = [];
+}
+
+function mapSchemaInOperation(content) {
+  const format = Object.keys(content)[0];
+  const type = content[format];
+  const ref = type.schema && type.schema.$ref ? type.schema.$ref : null;
+
+  if (ref) {
+    return {
+      ref,
+      name: fileName(ref),
+    };
+  }
+
+  return undefined;
+}
 
 function mapRequestBodyType(pathData) {
   if (pathData.requestBody && pathData.requestBody.content) {
-    console.log(pathData.requestBody.content);
-    const format = Object.keys(pathData.requestBody.content)[0];
-    const type = pathData.requestBody.content[format];
-    const ref = type.schema && type.schema.$ref ? type.schema.$ref : null;
-
-    if (ref) {
-      return fileName(ref);
-    }
+    return mapSchemaInOperation(pathData.requestBody.content);
   }
 
   return undefined;
@@ -50,7 +65,25 @@ function writePath(key, method, pathData, path, model, target, prettierOpts) {
   }
 
   if ($$requestBodyType) {
-    imports.push({ ref: $$requestBodyType, fileName: `../components/schemas/${$$requestBodyType}` });
+    imports.push({ ref: $$requestBodyType.name, fileName: `../components/schemas/${$$requestBodyType.name}` });
+    const refName = $$requestBodyType.ref.split('/').pop();
+    writeSchema(refName, model.components.schemas[refName], model, target, prettierOpts);
+  }
+
+  if (pathData.responses) {
+    Object.values(pathData.responses)
+      .filter((opDef) => opDef.content && mapSchemaInOperation(opDef.content))
+      .map((opDef) => mapSchemaInOperation(opDef.content))
+      .map(({ ref }) => {
+        const refName = ref.split('/').pop();
+        return { ref, refName, schema: model.components.schemas[refName] };
+      })
+      .forEach(({ ref, refName, schema }) => {
+        if (!schemaRefCache.includes(ref)) {
+          writeSchema(refName, schema, model, target, prettierOpts, true);
+          schemaRefCache.push(ref);
+        }
+      });
   }
 
   $$consolidatedImports.push(...consolidateImports(imports, $$name, 'ref'));
@@ -60,7 +93,7 @@ function writePath(key, method, pathData, path, model, target, prettierOpts) {
     $$path,
     $$method,
     $$requestContentType,
-    $$requestBodyType,
+    $$requestBodyType: $$requestBodyType && $$requestBodyType.name,
     $$queryParameters,
     $$pathParams,
     $$consolidatedImports,
@@ -72,5 +105,6 @@ function writePath(key, method, pathData, path, model, target, prettierOpts) {
 }
 
 module.exports = {
+  clearSchemaRefCache,
   writePath,
 };

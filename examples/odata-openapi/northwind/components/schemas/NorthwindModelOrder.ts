@@ -9,79 +9,79 @@ export interface NorthwindModelOrder {
   /**
    * format: int32
    */
-  OrderID?: number;
+  readonly OrderID?: number;
 
   /**
    * maxLength: 5
    */
-  CustomerID?: string;
+  readonly CustomerID?: string;
 
   /**
    * format: int32
    */
-  EmployeeID?: number;
+  readonly EmployeeID?: number;
 
   /**
    * format: date-time
    */
-  OrderDate?: string;
+  readonly OrderDate?: string;
 
   /**
    * format: date-time
    */
-  RequiredDate?: string;
+  readonly RequiredDate?: string;
 
   /**
    * format: date-time
    */
-  ShippedDate?: string;
+  readonly ShippedDate?: string;
 
   /**
    * format: int32
    */
-  ShipVia?: number;
+  readonly ShipVia?: number;
 
   /**
    * format: decimal
    * multipleOf: 0.0001
    */
-  Freight?: number | string;
+  readonly Freight?: number | string;
 
   /**
    * maxLength: 40
    */
-  ShipName?: string;
+  readonly ShipName?: string;
 
   /**
    * maxLength: 60
    */
-  ShipAddress?: string;
+  readonly ShipAddress?: string;
 
   /**
    * maxLength: 15
    */
-  ShipCity?: string;
+  readonly ShipCity?: string;
 
   /**
    * maxLength: 15
    */
-  ShipRegion?: string;
+  readonly ShipRegion?: string;
 
   /**
    * maxLength: 10
    */
-  ShipPostalCode?: string;
+  readonly ShipPostalCode?: string;
 
   /**
    * maxLength: 15
    */
-  ShipCountry?: string;
+  readonly ShipCountry?: string;
 
-  Customer?: NorthwindModelCustomer;
+  readonly Customer?: NorthwindModelCustomer;
 
-  Employee?: NorthwindModelEmployee;
+  readonly Employee?: NorthwindModelEmployee;
 
-  Order_Details?: Array<NorthwindModelOrderDetail>;
+  readonly Order_Details?: ReadonlyArray<NorthwindModelOrderDetail>;
 
-  Shipper?: NorthwindModelShipper;
+  readonly Shipper?: NorthwindModelShipper;
 }

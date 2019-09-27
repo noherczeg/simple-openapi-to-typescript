@@ -5,20 +5,20 @@ export interface NorthwindModelSalesTotalsByAmount {
    * format: decimal
    * multipleOf: 0.0001
    */
-  SaleAmount?: number | string;
+  readonly SaleAmount?: number | string;
 
   /**
    * format: int32
    */
-  OrderID?: number;
+  readonly OrderID?: number;
 
   /**
    * maxLength: 40
    */
-  CompanyName?: string;
+  readonly CompanyName?: string;
 
   /**
    * format: date-time
    */
-  ShippedDate?: string;
+  readonly ShippedDate?: string;
 }
