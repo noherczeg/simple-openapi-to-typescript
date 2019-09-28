@@ -29,7 +29,8 @@ Paths, the current algorithm produces files names (converted to Pascal Case) fro
 > Please refer to: [namings.js: operationName()](./src/utils/naming.js) for full details.
 
 ## Compatibility
-- [Version 3.0.2](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md)
+- OpenAPI: [3.0.2](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md)
+- TypeScript: 2.0
 
 ## Usage
 
