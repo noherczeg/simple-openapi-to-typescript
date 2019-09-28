@@ -170,5 +170,12 @@ describe('openapi-web-gen', () => {
         expect(schemaOutputFor(openApiUsptoPath, 'DataSetList.ts')).toMatchSnapshot();
       });
     });
+
+    describe('paths/', () => {
+      it('PerformSearch.ts', () => {
+        expect(pathOutputFor(openApiUsptoPath, 'PerformSearch.ts'))
+          .toMatchSnapshot();
+      });
+    });
   });
 });
