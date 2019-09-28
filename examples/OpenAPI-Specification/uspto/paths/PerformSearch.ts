@@ -2,6 +2,7 @@
 
 import { HttpMethods } from "../constants/HttpMethods";
 import { MediaTypes } from "../constants/MediaTypes";
+import { HttpHeaders } from "../constants/HttpHeaders";
 
 export interface PathParams {
   version: string;
@@ -22,6 +23,6 @@ export function createPath(pathParams: PathParams, baseUrl?: string): string {
 export const method: HttpMethods = HttpMethods.POST;
 
 export const headers: Record<string, string> = {
-  Accept: MediaTypes.APPLICATION_JSON,
-  "Content-Type": MediaTypes.APPLICATION_FORM_URLENCODED
+  [HttpHeaders.ACCEPT]: MediaTypes.APPLICATION_JSON,
+  [HttpHeaders.CONTENT_TYPE]: MediaTypes.APPLICATION_FORM_URLENCODED
 };

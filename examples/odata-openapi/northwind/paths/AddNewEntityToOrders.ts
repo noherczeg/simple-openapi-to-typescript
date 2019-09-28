@@ -3,6 +3,7 @@
 import { HttpMethods } from "../constants/HttpMethods";
 import { NorthwindModelOrderCreate } from "../components/schemas/NorthwindModelOrderCreate";
 import { MediaTypes } from "../constants/MediaTypes";
+import { HttpHeaders } from "../constants/HttpHeaders";
 
 /**
  
@@ -15,8 +16,8 @@ export function createPath(baseUrl?: string): string {
 export const method: HttpMethods = HttpMethods.POST;
 
 export const headers: Record<string, string> = {
-  Accept: MediaTypes.APPLICATION_JSON,
-  "Content-Type": MediaTypes.APPLICATION_JSON
+  [HttpHeaders.ACCEPT]: MediaTypes.APPLICATION_JSON,
+  [HttpHeaders.CONTENT_TYPE]: MediaTypes.APPLICATION_JSON
 };
 
 export type RequestBody = NorthwindModelOrderCreate;

@@ -2,6 +2,7 @@
 
 import { HttpMethods } from "../constants/HttpMethods";
 import { MediaTypes } from "../constants/MediaTypes";
+import { HttpHeaders } from "../constants/HttpHeaders";
 
 export interface RequestSearchParams {
   tags?: Array<string>;
@@ -19,5 +20,5 @@ export function createPath(baseUrl?: string): string {
 export const method: HttpMethods = HttpMethods.GET;
 
 export const headers: Record<string, string> = {
-  Accept: MediaTypes.APPLICATION_JSON
+  [HttpHeaders.ACCEPT]: MediaTypes.APPLICATION_JSON
 };

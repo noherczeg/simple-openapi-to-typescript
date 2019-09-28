@@ -38,8 +38,8 @@ export function createPath(${pathData.$$pathParams && pathData.$$pathParams.leng
 export const method: HttpMethods = HttpMethods.${pathData.$$method};
 
 ${pathData.$$requestContentType || pathData.$$requestAcceptType ? `export const headers: Record<string, string> = {
-  ${pathData.$$requestAcceptType ? `'Accept': MediaTypes.${pathData.$$requestAcceptType},` : ''}
-  ${pathData.$$requestContentType ? `'Content-Type': MediaTypes.${pathData.$$requestContentType},` : ''}
+  ${pathData.$$requestAcceptType ? `[HttpHeaders.ACCEPT]: MediaTypes.${pathData.$$requestAcceptType},` : ''}
+  ${pathData.$$requestContentType ? `[HttpHeaders.CONTENT_TYPE]: MediaTypes.${pathData.$$requestContentType},` : ''}
 };` : ''}
 
 ${pathData.$$requestBodyType ? `export type RequestBody = ${pathData.$$requestBodyType}` : ''}

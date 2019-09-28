@@ -2,6 +2,7 @@
 
 import { HttpMethods } from "../constants/HttpMethods";
 import { MediaTypes } from "../constants/MediaTypes";
+import { HttpHeaders } from "../constants/HttpHeaders";
 
 /**
  * description: Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)
@@ -52,5 +53,5 @@ export function createPath(pathParams: PathParams, baseUrl?: string): string {
 export const method: HttpMethods = HttpMethods.GET;
 
 export const headers: Record<string, string> = {
-  Accept: MediaTypes.APPLICATION_JSON
+  [HttpHeaders.ACCEPT]: MediaTypes.APPLICATION_JSON
 };

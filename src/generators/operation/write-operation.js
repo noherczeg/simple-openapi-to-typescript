@@ -94,6 +94,7 @@ function writePath(key, method, pathData, path, model, target, prettierOpts) {
 
   if ($$requestContentType || $$requestAcceptType) {
     imports.push({ ref: 'MediaTypes', fileName: '../constants/MediaTypes' });
+    imports.push({ ref: 'HttpHeaders', fileName: '../constants/HttpHeaders' });
   }
 
   $$consolidatedImports.push(...consolidateImports(imports, $$name, 'ref'));

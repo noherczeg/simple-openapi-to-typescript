@@ -3,6 +3,7 @@
 import { HttpMethods } from "../constants/HttpMethods";
 import { NorthwindModelCategoryUpdate } from "../components/schemas/NorthwindModelCategoryUpdate";
 import { MediaTypes } from "../constants/MediaTypes";
+import { HttpHeaders } from "../constants/HttpHeaders";
 
 export interface PathParams {
   CategoryID: number;
@@ -21,7 +22,7 @@ export function createPath(pathParams: PathParams, baseUrl?: string): string {
 export const method: HttpMethods = HttpMethods.PATCH;
 
 export const headers: Record<string, string> = {
-  "Content-Type": MediaTypes.APPLICATION_JSON
+  [HttpHeaders.CONTENT_TYPE]: MediaTypes.APPLICATION_JSON
 };
 
 export type RequestBody = NorthwindModelCategoryUpdate;
