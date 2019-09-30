@@ -6,6 +6,10 @@ import { MediaTypes } from "../constants/MediaTypes";
 import { HttpHeaders } from "../constants/HttpHeaders";
 
 export interface PathParams {
+  /**
+   * description: key: TerritoryID
+   * maxLength: 20
+   */
   TerritoryID: string;
 }
 

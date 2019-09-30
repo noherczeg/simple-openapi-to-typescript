@@ -3,6 +3,9 @@
 import { HttpMethods } from "../constants/HttpMethods";
 
 export interface PathParams {
+  /**
+   * description: key: CategoryID
+   */
   CategoryID: number;
 }
 

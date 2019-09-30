@@ -25,8 +25,14 @@ export enum ExpandEnum {
 }
 
 export interface PathParams {
+  /**
+   * description: key: OrderID
+   */
   OrderID: number;
 
+  /**
+   * description: key: ProductID
+   */
   ProductID: number;
 }
 

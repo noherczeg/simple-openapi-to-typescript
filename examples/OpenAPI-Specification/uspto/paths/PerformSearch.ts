@@ -5,8 +5,14 @@ import { MediaTypes } from "../constants/MediaTypes";
 import { HttpHeaders } from "../constants/HttpHeaders";
 
 export interface PathParams {
+  /**
+   * description: Version of the dataset.
+   */
   version: string;
 
+  /**
+   * description: Name of the dataset. In this case, the default value is oa_citations
+   */
   dataset: string;
 }
 

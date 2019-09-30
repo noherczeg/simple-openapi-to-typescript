@@ -3,8 +3,14 @@
 import { HttpMethods } from "../constants/HttpMethods";
 
 export interface PathParams {
+  /**
+   * description: key: OrderID
+   */
   OrderID: number;
 
+  /**
+   * description: key: ProductID
+   */
   ProductID: number;
 }
 

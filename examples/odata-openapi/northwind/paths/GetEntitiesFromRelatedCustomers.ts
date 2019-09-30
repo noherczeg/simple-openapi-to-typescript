@@ -59,6 +59,10 @@ export enum ExpandEnum {
 }
 
 export interface PathParams {
+  /**
+   * description: key: CustomerTypeID
+   * maxLength: 10
+   */
   CustomerTypeID: string;
 }
 

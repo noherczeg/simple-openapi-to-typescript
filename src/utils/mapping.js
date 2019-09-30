@@ -19,7 +19,10 @@ function convertEnumName(e) {
 const docsMapper = (host, ...itemNames) => {
   const docs = [];
   itemNames.forEach((name) => {
-    if (Object.prototype.hasOwnProperty.call(host, name)) {
+    if (
+      Object.prototype.hasOwnProperty
+        .call(host, name) && host[name] !== undefined && host[name] !== null
+    ) {
       docs.push({ name, value: host[name] });
     }
   });
@@ -53,12 +56,42 @@ function subTypeMapper(param, readonly) {
 }
 
 function paramMapper(param, readonly) {
+  const {
+    name, style, required, schema, description, example,
+  } = param;
+  const {
+    format, maximum, exclusiveMaximum, minimum, exclusiveMinimum, maxLength, minLength, pattern,
+  } = param.schema ? param.schema : {};
+
   return {
-    name: param.name,
-    style: param.style,
-    required: param.required,
-    type: isUniqueEnum(param) ? 'Set' : typeMapper(param.schema.type, readonly),
+    name,
+    style,
+    required,
+    type: isUniqueEnum(param) ? 'Set' : typeMapper(schema.type, readonly),
     subType: subTypeMapper(param, readonly),
+    docs: docsMapper(
+      {
+        description,
+        example,
+        format,
+        maximum,
+        exclusiveMaximum,
+        minimum,
+        exclusiveMinimum,
+        maxLength,
+        minLength,
+        pattern,
+      },
+      'description',
+      'example',
+      'maximum',
+      'exclusiveMaximum',
+      'minimum',
+      'exclusiveMinimum',
+      'maxLength',
+      'minLength',
+      'pattern',
+    ),
   };
 }
 

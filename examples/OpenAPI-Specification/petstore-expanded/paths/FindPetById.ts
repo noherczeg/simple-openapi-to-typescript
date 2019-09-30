@@ -5,6 +5,9 @@ import { MediaTypes } from "../constants/MediaTypes";
 import { HttpHeaders } from "../constants/HttpHeaders";
 
 export interface PathParams {
+  /**
+   * description: ID of pet to fetch
+   */
   id: number;
 }
 

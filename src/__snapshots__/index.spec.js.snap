@@ -252,8 +252,14 @@ import { MediaTypes } from \\"../constants/MediaTypes\\";
 import { HttpHeaders } from \\"../constants/HttpHeaders\\";
 
 export interface PathParams {
+  /**
+   * description: Version of the dataset.
+   */
   version: string;
 
+  /**
+   * description: Name of the dataset. In this case, the default value is oa_citations
+   */
   dataset: string;
 }
 
@@ -724,6 +730,9 @@ export enum ExpandEnum {
 }
 
 export interface PathParams {
+  /**
+   * description: key: SupplierID
+   */
   SupplierID: number;
 }
 
@@ -816,12 +825,26 @@ import { MediaTypes } from \\"../constants/MediaTypes\\";
 import { HttpHeaders } from \\"../constants/HttpHeaders\\";
 
 export interface PathParams {
+  /**
+   * description: key: CategoryName
+   * maxLength: 15
+   */
   CategoryName: string;
 
+  /**
+   * description: key: Discontinued
+   */
   Discontinued: boolean;
 
+  /**
+   * description: key: ProductID
+   */
   ProductID: number;
 
+  /**
+   * description: key: ProductName
+   * maxLength: 40
+   */
   ProductName: string;
 }
 

@@ -14,6 +14,9 @@ export enum SelectEnum {
 }
 
 export interface PathParams {
+  /**
+   * description: key: OrderID
+   */
   OrderID: number;
 }
 

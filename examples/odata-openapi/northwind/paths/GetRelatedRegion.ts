@@ -21,6 +21,10 @@ export enum ExpandEnum {
 }
 
 export interface PathParams {
+  /**
+   * description: key: TerritoryID
+   * maxLength: 20
+   */
   TerritoryID: string;
 }
 

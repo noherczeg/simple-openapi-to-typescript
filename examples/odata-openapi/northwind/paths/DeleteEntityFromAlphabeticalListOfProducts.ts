@@ -3,12 +3,26 @@
 import { HttpMethods } from "../constants/HttpMethods";
 
 export interface PathParams {
+  /**
+   * description: key: CategoryName
+   * maxLength: 15
+   */
   CategoryName: string;
 
+  /**
+   * description: key: Discontinued
+   */
   Discontinued: boolean;
 
+  /**
+   * description: key: ProductID
+   */
   ProductID: number;
 
+  /**
+   * description: key: ProductName
+   * maxLength: 40
+   */
   ProductName: string;
 }
 

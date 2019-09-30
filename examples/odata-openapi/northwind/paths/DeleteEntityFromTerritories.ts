@@ -3,6 +3,10 @@
 import { HttpMethods } from "../constants/HttpMethods";
 
 export interface PathParams {
+  /**
+   * description: key: TerritoryID
+   * maxLength: 20
+   */
   TerritoryID: string;
 }
 

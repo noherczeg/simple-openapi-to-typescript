@@ -3,6 +3,10 @@
 import { HttpMethods } from "../constants/HttpMethods";
 
 export interface PathParams {
+  /**
+   * description: key: CustomerTypeID
+   * maxLength: 10
+   */
   CustomerTypeID: string;
 }
 

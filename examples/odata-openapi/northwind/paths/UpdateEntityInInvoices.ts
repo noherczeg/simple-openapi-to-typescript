@@ -6,22 +6,53 @@ import { MediaTypes } from "../constants/MediaTypes";
 import { HttpHeaders } from "../constants/HttpHeaders";
 
 export interface PathParams {
+  /**
+   * description: key: CustomerName
+   * maxLength: 40
+   */
   CustomerName: string;
 
+  /**
+   * description: key: Discount
+   */
   Discount: undefined;
 
+  /**
+   * description: key: OrderID
+   */
   OrderID: number;
 
+  /**
+   * description: key: ProductID
+   */
   ProductID: number;
 
+  /**
+   * description: key: ProductName
+   * maxLength: 40
+   */
   ProductName: string;
 
+  /**
+   * description: key: Quantity
+   */
   Quantity: number;
 
+  /**
+   * description: key: Salesperson
+   * maxLength: 31
+   */
   Salesperson: string;
 
+  /**
+   * description: key: ShipperName
+   * maxLength: 40
+   */
   ShipperName: string;
 
+  /**
+   * description: key: UnitPrice
+   */
   UnitPrice: undefined;
 }
 

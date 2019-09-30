@@ -15,8 +15,15 @@ export enum SelectEnum {
 }
 
 export interface PathParams {
+  /**
+   * description: key: CompanyName
+   * maxLength: 40
+   */
   CompanyName: string;
 
+  /**
+   * description: key: OrderID
+   */
   OrderID: number;
 }
 

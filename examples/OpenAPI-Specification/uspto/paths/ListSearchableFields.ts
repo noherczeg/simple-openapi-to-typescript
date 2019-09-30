@@ -5,8 +5,16 @@ import { MediaTypes } from "../constants/MediaTypes";
 import { HttpHeaders } from "../constants/HttpHeaders";
 
 export interface PathParams {
+  /**
+   * description: Name of the dataset.
+   * example: oa_citations
+   */
   dataset: string;
 
+  /**
+   * description: Version of the dataset.
+   * example: v1
+   */
   version: string;
 }
 

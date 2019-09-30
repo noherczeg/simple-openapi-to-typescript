@@ -21,6 +21,9 @@ export enum ExpandEnum {
 }
 
 export interface PathParams {
+  /**
+   * description: key: RegionID
+   */
   RegionID: number;
 }
 

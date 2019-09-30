@@ -18,8 +18,12 @@ ${e.docs && e.docs.length ? `
 ${pathData.$$pathParams && pathData.$$pathParams.length ? `
 export interface PathParams {
   ${pathData.$$pathParams.map((pp) => `
-    ${pp.name}${pp.required ? '' : '?'}: ${pp.type} ${pp.subType ? `<${pp.subType}>` : ''}
-  `).join('')}
+    ${pp.docs && pp.docs.length ? `
+      /**
+       ${pp.docs.map((d) => `* ${d.name}: ${d.value}`).join(EOL)}
+       */
+    ` : ''}${pp.name}${pp.required ? '' : '?'}: ${pp.type} ${pp.subType ? `<${pp.subType}>` : ''}
+  `).join(EOL)}
 }` : ''}
 
 ${pathData.$$queryParameters && pathData.$$queryParameters.length ? `
